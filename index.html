@@ -102,29 +102,39 @@
     <!-- Main Container -->
     <main class="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-20">
         <!-- Quick Stats & Filter Bar -->
-        <!-- 🏨 住宿飯店專屬小卡 -->
-        <div class="glass-card rounded-2xl p-4 mb-6 custom-shadow border border-rose-200/80 bg-gradient-to-r from-rose-50/70 to-pink-50/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-rose-500 text-white flex items-center justify-center text-lg shadow-sm flex-shrink-0">
-                    <i class="fa-solid fa-hotel"></i>
+        <!-- 🏨 住宿飯店專屬小卡 (已移除前置 Icon，版面更清爽) -->
+        <div class="glass-card rounded-2xl p-4 sm:p-5 mb-6 custom-shadow border border-rose-200/80 bg-gradient-to-r from-rose-50/80 via-pink-50/60 to-amber-50/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+                <!-- 飯店名稱與住宿標籤 -->
+                <div class="flex items-center gap-2 flex-wrap">
+                    <span class="text-[11px] font-bold text-rose-500 bg-white px-2.5 py-0.5 rounded-full border border-rose-200 shadow-xs">本次住宿</span>
+                    <h3 class="text-base sm:text-lg font-bold text-warmDark">Wonaenu Mareu (廣安里海景)</h3>
                 </div>
-                <div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-[11px] font-bold text-rose-500 bg-white px-2 py-0.5 rounded-full border border-rose-200">本次住宿</span>
-                        <h3 class="text-sm sm:text-base font-bold text-warmDark">Wonaenu Mareu (廣安里海景)</h3>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-0.5">
-                        부산 수영구 민락수변로 125 (민락동 110-87)
-                    </p>
+
+                <!-- 🌟 入住與退房時間標記 -->
+                <div class="flex items-center gap-2 mt-1.5 flex-wrap text-xs">
+                    <span class="inline-flex items-center gap-1 bg-amber-100 text-amber-800 font-semibold px-2 py-0.5 rounded-md">
+                        <i class="fa-solid fa-key text-[10px]"></i> 入住 15:00 後
+                    </span>
+                    <span class="inline-flex items-center gap-1 bg-rose-100 text-rose-700 font-semibold px-2 py-0.5 rounded-md">
+                        <i class="fa-solid fa-clock-rotate-left text-[10px]"></i> 退房 11:00 前
+                    </span>
                 </div>
+
+                <!-- 韓文地址 (搭計程車直接給司機看) -->
+                <p class="text-xs text-gray-500 mt-1.5 flex items-center gap-1" title="搭計程車直接給司機看此韓文">
+                    <i class="fa-solid fa-location-dot text-rose-400"></i>
+                    <span>부산 수영구 민락수변로 125 (민락동 110-87) 골든뷰</span>
+                </p>
             </div>
-            <!-- 飯店地圖按鈕 -->
-            <div class="flex items-center gap-2 self-end sm:self-auto">
-                <a href="https://naver.me/FvTO34vd" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-[#03C75A] text-white text-xs px-3 py-1.5 rounded-xl font-bold hover:opacity-90 transition shadow-sm">
+
+            <!-- 雙地圖一鍵直達按鈕 -->
+            <div class="flex items-center gap-2 self-stretch sm:self-auto justify-end border-t sm:border-t-0 pt-3 sm:pt-0 border-rose-100/80 w-full sm:w-auto">
+                <a href="https://naver.me/FvTO34vd" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 bg-[#03C75A] text-white text-xs px-3.5 py-2 rounded-xl font-bold hover:opacity-90 transition shadow-sm">
                     <span class="bg-white text-[#03C75A] text-[9px] font-black px-1 rounded">N</span>
-                    <span>Naver 導航</span>
+                    <span>Naver 地圖</span>
                 </a>
-                <a href="https://www.google.com/maps/search/?api=1&query=125+Millaksubyeon-ro+Suyeong-gu+Busan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-700 text-xs px-3 py-1.5 rounded-xl font-bold hover:bg-gray-50 transition shadow-sm">
+                <a href="https://www.google.com/maps/search/?api=1&query=125+Millaksubyeon-ro+Suyeong-gu+Busan" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 bg-white border border-gray-200 text-gray-700 text-xs px-3.5 py-2 rounded-xl font-bold hover:bg-gray-50 transition shadow-sm">
                     <i class="fa-brands fa-google text-blue-500"></i>
                     <span>Google Maps</span>
                 </a>
