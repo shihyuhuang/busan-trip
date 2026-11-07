@@ -41,7 +41,7 @@
             box-shadow: 0 10px 30px -5px rgba(255, 123, 156, 0.12);
         }
         .glass-card {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.6);
         }
@@ -99,7 +99,6 @@
 
     <!-- Main Container -->
     <main class="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-20">
-
         <!-- Quick Stats & Filter Bar -->
         <div class="glass-card rounded-2xl p-4 mb-6 custom-shadow flex flex-wrap items-center justify-between gap-3">
             <!-- Filter buttons -->
@@ -122,7 +121,7 @@
             <div class="flex items-center gap-2 ml-auto">
                 <button onclick="window.print()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-1">
                     <i class="fa-solid fa-print"></i>
-                    <span class="hidden sm:inline">儲存為 PDF / 列印</span>
+                    <span class="hidden sm:inline">列印 / 存為 PDF</span>
                 </button>
                 <button onclick="toggleBucketList()" class="bg-rose-500 hover:bg-rose-600 text-white px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition shadow-sm flex items-center gap-1.5">
                     <i class="fa-solid fa-square-check"></i>
@@ -176,7 +175,6 @@
         <div id="timeline-wrapper" class="space-y-4">
             <!-- Timeline items rendered dynamically -->
         </div>
-
     </main>
 
     <!-- Footer -->
@@ -185,7 +183,10 @@
     </footer>
 
     <script>
-        // Data Structure for 5-Day Itinerary (2026)
+        // Preset Fallback Image
+        const DEFAULT_FALLBACK_IMG = "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800&auto=format&fit=crop&q=80";
+
+        // Enhanced Data Structure with High-Quality Images & Maps
         const itineraryData = {
             1: {
                 title: "Day 1 ‧ 抵達釜山 ➔ 南浦洞經典漫步 ➔ 韓味午餐 & 樂天夜景",
@@ -198,7 +199,15 @@
                         desc: "辦理入境、領取行李，搭乘 Kakao T 計程車或地鐵前往南浦洞飯店寄放行李。",
                         category: "spot",
                         icon: "fa-plane-arrival",
-                        tag: "交通"
+                        tag: "交通",
+                        img: "https://images.unsplash.com/photo-1542296332-2e4473faf563?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "金海國際機場",
+                                naver: "https://map.naver.com/p/search/%EA%B9%80%ED%95%B4%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD",
+                                google: "https://www.google.com/maps/search/?api=1&query=Gimhae+International+Airport"
+                            }
+                        ]
                     },
                     {
                         time: "13:30",
@@ -207,7 +216,25 @@
                         category: "food",
                         icon: "fa-utensils",
                         tag: "美食首選",
-                        badge: "米其林推薦 / 海鮮"
+                        badge: "米其林推薦 / 海鮮",
+                        img: "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "Anmok 釜山站店",
+                                naver: "https://map.naver.com/p/search/%EC%95%88%EB%AA%A9%20%EB%B6%80%EC%82%B0",
+                                google: "https://www.google.com/maps/search/?api=1&query=Anmok+Busan"
+                            },
+                            {
+                                name: "扎嘎其市場",
+                                naver: "https://map.naver.com/p/search/%EC%9E%90%EA%B0%88%EC%B9%98%EC%8B%9C%EC%9E%A5",
+                                google: "https://www.google.com/maps/search/?api=1&query=Jagalchi+Market+Busan"
+                            },
+                            {
+                                name: "味贊王鹽烤肉 南浦店",
+                                naver: "https://map.naver.com/p/search/%EB%A7%9B%EC%B0%AC%EB%93%A4%20%EC%99%95%EC%86%8C%EA%B8%88%EA%85%B8%EC%9D%B4%20%EB%82%A8%ED%8F%AC%EC%A0%90",
+                                google: "https://www.google.com/maps/search/?api=1&query=Matchandeul+Wang+Sogeumgui+Nampo"
+                            }
+                        ]
                     },
                     {
                         time: "15:00 - 18:00",
@@ -215,16 +242,37 @@
                         desc: "掃蕩 BIFF 廣場黑糖餅 (Seed Hotteok)、辣炒年糕。與姐妹們在 Photoism / Life Four Cuts 拍攝第一組四格拍貼照！",
                         category: "shop",
                         icon: "fa-camera",
-                        tag: "打卡/活動"
+                        tag: "打卡/活動",
+                        img: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "BIFF 廣場",
+                                naver: "https://map.naver.com/p/search/BIFF%EA%B4%91%EC%9E%A5",
+                                google: "https://www.google.com/maps/search/?api=1&query=BIFF+Square+Busan"
+                            },
+                            {
+                                name: "Photoism 南浦店",
+                                naver: "https://map.naver.com/p/search/%ED%8F%AC%ED%86%A0%EC%9D%B4%EC%A6%98%20%EB%82%A8%ED%8F%AC",
+                                google: "https://www.google.com/maps/search/?api=1&query=Photoism+Nampo+Busan"
+                            }
+                        ]
                     },
                     {
                         time: "16:30",
                         title: "下午茶：李在模披薩 本店 (Ijaemo Pizza)",
-                        desc: "釜山爆款起司披薩！建議外帶小份披薩作為下午茶分享，省去正餐時間的人潮排隊。",
+                        desc: "釜山爆款起司披薩！使用韓國國產濃醇起司，建議外帶小份披薩作為下午茶分享，省去正餐時間的大排長龍。",
                         category: "food",
                         icon: "fa-pizza-slice",
                         tag: "下午茶候選",
-                        badge: "清單美食"
+                        badge: "清單美食",
+                        img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "李在模披薩 本店",
+                                naver: "https://map.naver.com/p/search/%EC%9D%B4%EC%9E%AC%EB%AA%A8%ED%94%BC%EC%9E%90%20%EB%B3%B8%EC%A0%90",
+                                google: "https://www.google.com/maps/search/?api=1&query=Lee+Jaemo+Pizza+Busan"
+                            }
+                        ]
                     },
                     {
                         time: "18:30",
@@ -232,7 +280,15 @@
                         desc: "登上 13 樓免費 Sky Park 俯瞰釜山港夜景與影島大橋，隨後至 B1 樂天超市採買零食伴手禮。",
                         category: "spot",
                         icon: "fa-city",
-                        tag: "景點/購物"
+                        tag: "景點/購物",
+                        img: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "樂天百貨 光復店",
+                                naver: "https://map.naver.com/p/search/%EB%A1%AF%EB%8D%B0%EB%B0%B1%ED%99%94%EC%A0%90%20%EA%B4%91%EB%B3%B5%EC%A0%90",
+                                google: "https://www.google.com/maps/search/?api=1&query=Lotte+Department+Store+Gwangbok"
+                            }
+                        ]
                     }
                 ]
             },
@@ -247,15 +303,31 @@
                         desc: "睡飽優雅出發！彩色小屋山城漫步，別忘了在熱門打卡點「小王子與沙漠狐狸」拍照留念。",
                         category: "spot",
                         icon: "fa-image",
-                        tag: "景點必訪"
+                        tag: "景點必訪",
+                        img: "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "甘川洞文化村",
+                                naver: "https://map.naver.com/p/search/%EA%B0%90%EC%B2%9C%EB%AC%B8%ED%99%94%EB%A7%88%EC%9D%84",
+                                google: "https://www.google.com/maps/search/?api=1&query=Gamcheon+Culture+Village"
+                            }
+                        ]
                     },
                     {
                         time: "14:30",
                         title: "移動至海雲臺區",
-                        desc: "搭車前往海雲臺藍線公園尾浦站準備搭乘列車。",
+                        desc: "搭車前往海雲臺藍線公園尾浦站準備搭乘預約的海岸列車。",
                         category: "spot",
                         icon: "fa-taxi",
-                        tag: "交通"
+                        tag: "交通",
+                        img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "藍線公園 尾浦站",
+                                naver: "https://map.naver.com/p/search/%ED%95%B4%EC%9A%B4%EB%8C%80%EB%B8%94%EB%A3%A8%EB%9D%BC%EC%9D%B8%ED%8C%8C%ED%81%AC%20%EB%AF%B8%ED%8F%AC%EC%A0%95%EA%B1%B0%EC%9E%A5",
+                                google: "https://www.google.com/maps/search/?api=1&query=Haeundae+Blueline+Park+Mipo"
+                            }
+                        ]
                     },
                     {
                         time: "16:00 (預約)",
@@ -264,7 +336,15 @@
                         category: "spot",
                         icon: "fa-train",
                         tag: "核心行程",
-                        badge: "已預約 16:00"
+                        badge: "已預約 16:00",
+                        img: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "海雲臺天空膠囊列車 (尾浦)",
+                                naver: "https://map.naver.com/p/search/%ED%95%B4%EC%9A%B4%EB%8C%80%20%EC%8A%A4%EC%B9%B4%EC%9D%B4%EC%BA%A1%EC%87%98",
+                                google: "https://www.google.com/maps/search/?api=1&query=Haeundae+Sky+Capsule+Mipo+Station"
+                            }
+                        ]
                     },
                     {
                         time: "18:00",
@@ -273,7 +353,20 @@
                         category: "food",
                         icon: "fa-bowl-food",
                         tag: "晚餐候選",
-                        badge: "清單美食"
+                        badge: "清單美食",
+                        img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "嚴湧帛豬肉湯飯 海雲臺店",
+                                naver: "https://map.naver.com/p/search/%EC%97%84%EC%9A%A9%EB%B0%B1%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5%20%ED%95%B4%EC%9A%B4%EB%8C%80%EC%A0%90",
+                                google: "https://www.google.com/maps/search/?api=1&query=Eomyongbaek+Pork+Soup+Haeundae"
+                            },
+                            {
+                                name: "巨大牛肉湯飯",
+                                naver: "https://map.naver.com/p/search/%EA%B1%B0%EB%8C%80%EA%B3%B0%ED%83%95",
+                                google: "https://www.google.com/maps/search/?api=1&query=Geodae+Gomtang+Haeundae"
+                            }
+                        ]
                     },
                     {
                         time: "19:30",
@@ -281,7 +374,20 @@
                         desc: "散步逛傳統市場，飯後一定要買外皮 Q 彈的「老虎冰淇淋大福 (Horang2 Gelatteok)」解饞！",
                         category: "food",
                         icon: "fa-ice-cream",
-                        tag: "必吃甜點"
+                        tag: "必吃甜點",
+                        img: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "老虎冰淇淋大福",
+                                naver: "https://map.naver.com/p/search/%ED%98%B8%EB%9E%91%EC%9D%B4%EC%A0%A4%EB%9D%BC%EB%96%A1",
+                                google: "https://www.google.com/maps/search/?api=1&query=Horang2+Gelatteok+Busan"
+                            },
+                            {
+                                name: "海雲臺傳統市場",
+                                naver: "https://map.naver.com/p/search/%ED%95%B4%EC%9A%B4%EB%8C%80%EC%A0%84%ED%86%B5%EC%8B%9C%EC%9E%A5",
+                                google: "https://www.google.com/maps/search/?api=1&query=Haeundae+Traditional+Market"
+                            }
+                        ]
                     }
                 ]
             },
@@ -293,10 +399,18 @@
                     {
                         time: "11:00",
                         title: "廣安里海岸漫步",
-                        desc: "欣賞沙灘與廣安大橋交織的海天一色景致。",
+                        desc: "欣賞細白沙灘與廣安大橋交織的海天一色景致，感受微風與冬日暖陽。",
                         category: "spot",
                         icon: "fa-umbrella-beach",
-                        tag: "景點"
+                        tag: "景點",
+                        img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "廣安里海水浴場",
+                                naver: "https://map.naver.com/p/search/%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5",
+                                google: "https://www.google.com/maps/search/?api=1&query=Gwangalli+Beach"
+                            }
+                        ]
                     },
                     {
                         time: "11:30",
@@ -305,7 +419,20 @@
                         category: "food",
                         icon: "fa-cookie-bite",
                         tag: "午餐候選",
-                        badge: "海景餐廳"
+                        badge: "海景餐廳",
+                        img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "Guess WHO Restaurant",
+                                naver: "https://map.naver.com/p/search/%EA%B2%8C%EC%8A%A4%ED%9B%84",
+                                google: "https://www.google.com/maps/search/?api=1&query=Guess+Who+Restaurant+Busan"
+                            },
+                            {
+                                name: "AllSunday 廣安店",
+                                naver: "https://map.naver.com/p/search/%EC%98%AC%EC%84%A0%EB%8D%B0%EC%9D%B4%20%EA%B4%91%EC%95%88%EC%A0%90",
+                                google: "https://www.google.com/maps/search/?api=1&query=AllSunday+Bagel+Gwangalli"
+                            }
+                        ]
                     },
                     {
                         time: "14:00 - 17:30",
@@ -314,16 +441,32 @@
                         category: "shop",
                         icon: "fa-hot-tub-person",
                         tag: "放鬆體驗",
-                        badge: "必去汗蒸幕"
+                        badge: "必去汗蒸幕",
+                        img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "新世界 SPA LAND",
+                                naver: "https://map.naver.com/p/search/%EC%8A%A4%ED%8C%8C%EB%9E%9C%EB%93%9C%20%EC%84%BC%ED%85%80%EC%8B%9C%ED%8B%B0",
+                                google: "https://www.google.com/maps/search/?api=1&query=Spa+Land+Centum+City"
+                            }
+                        ]
                     },
                     {
                         time: "18:30",
                         title: "晚餐：1988 釜山韓牛 (1988busanhanwoo)",
-                        desc: "邊欣賞廣安大橋浪漫璀璨夜景，邊品嚐頂級全程代烤韓牛燒肉，質感滿分！",
+                        desc: "邊欣賞廣安大橋浪漫璀璨夜景，邊品嚐頂級全程代烤韓牛燒肉，肉質油花滿分！",
                         category: "food",
                         icon: "fa-fire",
                         tag: "奢華晚餐",
-                        badge: "清單美食"
+                        badge: "清單美食",
+                        img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "1988 釜山韓牛",
+                                naver: "https://map.naver.com/p/search/1988%EB%B6%80%EC%82%B0%ED%95%9C%EC%9A%B0",
+                                google: "https://www.google.com/maps/search/?api=1&query=1988+Busan+Hanwoo+Gwangalli"
+                            }
+                        ]
                     }
                 ]
             },
@@ -335,10 +478,23 @@
                     {
                         time: "11:00",
                         title: "西面地下街 & 田浦購物血拼",
-                        desc: "掃蕩西面地下街平價流行服飾、飾品，接著逛田浦洞獨立選品店與設計師品牌 (尋找質感服飾)。",
+                        desc: "掃蕩西面地下街平價流行服飾、飾品，接著逛田浦洞獨立選品店與設計師品牌挖寶。",
                         category: "shop",
                         icon: "fa-bag-shopping",
-                        tag: "購物血拼"
+                        tag: "購物血拼",
+                        img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "西面地下街",
+                                naver: "https://map.naver.com/p/search/%EC%84%9C%EB%A9%B4%EC%A7%80%ED%95%98%EC%83%81%EA%B0%80",
+                                google: "https://www.google.com/maps/search/?api=1&query=Seomyeon+Underground+Shopping+Center"
+                            },
+                            {
+                                name: "田浦選品街區",
+                                naver: "https://map.naver.com/p/search/%EC%A0%84%ED%8F%AC%EB%8F%99%20%EC%86%8C%ED%92%88%EC%83%B5",
+                                google: "https://www.google.com/maps/search/?api=1&query=Jeonpo+dong+shopping+Busan"
+                            }
+                        ]
                     },
                     {
                         time: "13:00",
@@ -347,7 +503,25 @@
                         category: "food",
                         icon: "fa-utensils",
                         tag: "午/晚餐候選",
-                        badge: "清單名店"
+                        badge: "清單名店",
+                        img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "Cor Pasta Bar",
+                                naver: "https://map.naver.com/p/search/%EC%BD%94%EB%A5%B4%20%ED%8C%8C%EC%8A%A4%ED%83%80%EB%B0%94",
+                                google: "https://www.google.com/maps/search/?api=1&query=Cor+Pasta+Bar+Jeonpo+Busan"
+                            },
+                            {
+                                name: "老宅邸燒肉",
+                                naver: "https://map.naver.com/p/search/%EA%B3%A0%ED%83%9D%20%EC%84%9C%EB%A9%B4",
+                                google: "https://www.google.com/maps/search/?api=1&query=Old+Mansion+BBQ+Busan"
+                            },
+                            {
+                                name: "손내향미 (Sonnae Hyangmi)",
+                                naver: "https://map.naver.com/p/search/%EC%86%90%EB%82%B4%ED%96%A5%EB%AF%B8",
+                                google: "https://www.google.com/maps/search/?api=1&query=Sonnae+Hyangmi+Busan"
+                            }
+                        ]
                     },
                     {
                         time: "15:30",
@@ -355,7 +529,15 @@
                         desc: "西面是拍貼機超級戰區！挑選各式可愛頭飾與聯名框，和姐妹們多拍幾組紀念照。",
                         category: "shop",
                         icon: "fa-camera-retro",
-                        tag: "活動/甜點"
+                        tag: "活動/甜點",
+                        img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "田浦咖啡街",
+                                naver: "https://map.naver.com/p/search/%EC%A0%84%ED%8F%AC%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC",
+                                google: "https://www.google.com/maps/search/?api=1&query=Jeonpo+Cafe+Street"
+                            }
+                        ]
                     }
                 ]
             },
@@ -370,7 +552,15 @@
                         desc: "睡到自然醒辦理退房，挑選一家美感滿分的咖啡廳享受悠閒早午餐與韓系甜點。",
                         category: "food",
                         icon: "fa-mug-hot",
-                        tag: "悠閒早午餐"
+                        tag: "悠閒早午餐",
+                        img: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "田浦早午餐街區",
+                                naver: "https://map.naver.com/p/search/%EC%A0%84%ED%8F%AC%20%EB%B8%8C%EB%9F%B0%EC%B9%98%20%EC%B9%B4%ED%8E%98",
+                                google: "https://www.google.com/maps/search/?api=1&query=Jeonpo+Brunch+Cafe+Busan"
+                            }
+                        ]
                     },
                     {
                         time: "14:00",
@@ -378,7 +568,20 @@
                         desc: "前往大型超市 (樂天超市 / E-mart) 進行泡麵、韓國零食、海苔與醬料大採購！",
                         category: "shop",
                         icon: "fa-cart-shopping",
-                        tag: "最後採買"
+                        tag: "最後採買",
+                        img: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "樂天超市 光復店",
+                                naver: "https://map.naver.com/p/search/%EB%A1%AF%EB%8D%B0%EB%A7%88%ED%8A%B8%20%EA%B4%91%EB%B3%B5%EC%A0%90",
+                                google: "https://www.google.com/maps/search/?api=1&query=Lotte+Mart+Gwangbok"
+                            },
+                            {
+                                name: "E-mart 門峴店 (近西面)",
+                                naver: "https://map.naver.com/p/search/%EC%9D%B4%EB%A7%88%ED%8A%B8%20%EB%AC%B8%ED%98%84%EC%A0%90",
+                                google: "https://www.google.com/maps/search/?api=1&query=E-mart+Munhyeon+Busan"
+                            }
+                        ]
                     },
                     {
                         time: "17:00",
@@ -386,13 +589,21 @@
                         desc: "搭車前往機場辦理退稅、登機手續。<br><b>回程航班：19:50 PUS ➔ 21:30 TPE</b>",
                         category: "spot",
                         icon: "fa-plane-departure",
-                        tag: "機場搭機"
+                        tag: "機場搭機",
+                        img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&auto=format&fit=crop&q=80",
+                        maps: [
+                            {
+                                name: "金海國際機場 (國際線)",
+                                naver: "https://map.naver.com/p/search/%EA%B9%80%ED%95%B4%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD%20%EA%B5%AD%EC%A0%9C%EC%84%A0",
+                                google: "https://www.google.com/maps/search/?api=1&query=Gimhae+International+Airport"
+                            }
+                        ]
                     }
                 ]
             }
         };
 
-        // Bucket list items (Updated)
+        // Bucket list items
         const bucketListItems = [
             { id: "b1", text: "扎嘎其市場 / BIFF 廣場吃黑糖餅" },
             { id: "b2", text: "海雲臺天空膠囊列車 (2026/12/8 16:00 預約)" },
@@ -412,7 +623,7 @@
         function renderTimeline() {
             const wrapper = document.getElementById('timeline-wrapper');
             const dayData = itineraryData[currentDay];
-            
+
             let html = `
                 <div class="glass-card rounded-2xl p-5 mb-4 border-l-4 border-rose-400 flex items-center justify-between">
                     <div>
@@ -442,8 +653,45 @@
                         spot: "bg-ocean text-white",
                         shop: "bg-purple-500 text-white"
                     };
-
                     const categoryBadgeClass = categoryColors[item.category] || "bg-gray-500 text-white";
+
+                    // Map action buttons HTML
+                    let mapsHtml = '';
+                    if (item.maps && item.maps.length > 0) {
+                        mapsHtml = `
+                            <div class="mt-4 pt-3 border-t border-rose-100/70 flex flex-wrap items-center gap-2">
+                                <span class="text-[11px] font-bold text-gray-400 flex items-center mr-1">
+                                    <i class="fa-solid fa-map-location-dot text-rose-400 mr-1.5 text-xs"></i>導航連結：
+                                </span>
+                                ${item.maps.map(m => `
+                                    <div class="inline-flex items-center bg-white/90 border border-rose-200/80 rounded-xl px-2.5 py-1 text-xs shadow-sm">
+                                        <span class="font-semibold text-warmDark mr-2 text-[11px]">${m.name}</span>
+                                        <div class="flex items-center gap-1.5 border-l border-gray-200 pl-2">
+                                            <a href="${m.naver}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-[#03C75A] hover:opacity-80 transition" title="使用 Naver 地圖開啟">
+                                                <span class="bg-[#03C75A] text-white text-[9px] font-black px-1 rounded">N</span>
+                                                <span class="text-[11px]">Naver</span>
+                                            </a>
+                                            <span class="text-gray-300">|</span>
+                                            <a href="${m.google}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-blue-500 hover:opacity-80 transition" title="使用 Google Maps 開啟">
+                                                <i class="fa-brands fa-google text-xs text-blue-500"></i>
+                                                <span class="text-[11px]">Google</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                    }
+
+                    // Card Image HTML with Fallback
+                    const imageHtml = item.img ? `
+                        <div class="relative w-full h-44 sm:h-56 rounded-xl overflow-hidden mb-3.5 group shadow-inner bg-rose-50/50">
+                            <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.onerror=null; this.src='${DEFAULT_FALLBACK_IMG}'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                                <span class="text-white text-xs font-medium drop-shadow"><i class="fa-solid fa-camera mr-1"></i>${item.title}</span>
+                            </div>
+                        </div>
+                    ` : '';
 
                     html += `
                         <div class="glass-card rounded-2xl p-5 custom-shadow transition duration-300 hover:translate-y-[-2px] relative overflow-hidden">
@@ -462,14 +710,18 @@
                                     <span class="bg-gray-100 text-gray-600 text-[11px] font-medium px-2 py-0.5 rounded-md">${item.tag}</span>
                                 </div>
                             </div>
-                            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed pl-0 sm:pl-12">
+
+                            ${imageHtml}
+
+                            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
                                 ${item.desc}
                             </p>
+
+                            ${mapsHtml}
                         </div>
                     `;
                 });
             }
-
             wrapper.innerHTML = html;
         }
 
