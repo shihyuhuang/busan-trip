@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 避免外部地圖圖床 Referrer 阻擋 (防 403 Forbidden) -->
+    <meta name="referrer" content="no-referrer">
     <title>釜山姊妹淘 5 Days 悠閒自由行</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -183,10 +185,10 @@
     </footer>
 
     <script>
-        // Preset Fallback Image
+        // 預設 Fallback 圖片 (若網路不穩自動使用)
         const DEFAULT_FALLBACK_IMG = "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800&auto=format&fit=crop&q=80";
 
-        // Enhanced Data Structure with High-Quality Images & Maps
+        // 行程資料 (已移除機場照片，全數更新為真實景點與特色美食代表圖)
         const itineraryData = {
             1: {
                 title: "Day 1 ‧ 抵達釜山 ➔ 南浦洞經典漫步 ➔ 韓味午餐 & 樂天夜景",
@@ -200,7 +202,7 @@
                         category: "spot",
                         icon: "fa-plane-arrival",
                         tag: "交通",
-                        img: "https://images.unsplash.com/photo-1542296332-2e4473faf563?w=800&auto=format&fit=crop&q=80",
+                        img: null, // 機場不用照片
                         maps: [
                             {
                                 name: "金海國際機場",
@@ -217,7 +219,8 @@
                         icon: "fa-utensils",
                         tag: "美食首選",
                         badge: "米其林推薦 / 海鮮",
-                        img: "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800&auto=format&fit=crop&q=80",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Dwaeji-gukbap.jpg/800px-Dwaeji-gukbap.jpg",
+                        imgLabel: "釜山名物熱騰騰豬肉湯飯 (돼지국밥)",
                         maps: [
                             {
                                 name: "Anmok 釜山站店",
@@ -239,11 +242,12 @@
                     {
                         time: "15:00 - 18:00",
                         title: "南浦洞 & BIFF 廣場漫步 + 韓系拍貼機",
-                        desc: "掃蕩 BIFF 廣場黑糖餅 (Seed Hotteok)、辣炒年糕。與姐妹們在 Photoism / Life Four Cuts 拍攝第一組四格拍貼照！",
+                        desc: "掃蕩 BIFF 廣場現煎堅果黑糖餅 (Seed Hotteok)、辣炒年糕。與姐妹們在 Photoism / Life Four Cuts 拍攝第一組四格拍貼照！",
                         category: "shop",
                         icon: "fa-camera",
                         tag: "打卡/活動",
-                        img: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&auto=format&fit=crop&q=80",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Ssiat_hotteok.jpg/800px-Ssiat_hotteok.jpg",
+                        imgLabel: "BIFF廣場知名元祖堅果黑糖餅 (씨앗호떡)",
                         maps: [
                             {
                                 name: "BIFF 廣場",
@@ -266,6 +270,7 @@
                         tag: "下午茶候選",
                         badge: "清單美食",
                         img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop&q=80",
+                        imgLabel: "李在模起司披薩爆漿牽絲餅皮實景",
                         maps: [
                             {
                                 name: "李在模披薩 本店",
@@ -281,7 +286,8 @@
                         category: "spot",
                         icon: "fa-city",
                         tag: "景點/購物",
-                        img: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=800&auto=format&fit=crop&q=80",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Night_view_of_Busan_Port.jpg/800px-Night_view_of_Busan_Port.jpg",
+                        imgLabel: "光復店頂樓 Sky Park 眺望釜山港海景夜色",
                         maps: [
                             {
                                 name: "樂天百貨 光復店",
@@ -304,7 +310,8 @@
                         category: "spot",
                         icon: "fa-image",
                         tag: "景點必訪",
-                        img: "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=800&auto=format&fit=crop&q=80",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Gamcheon_Culture_Village_-_panoramio.jpg/800px-Gamcheon_Culture_Village_-_panoramio.jpg",
+                        imgLabel: "甘川洞文化村童話般彩色山城實景",
                         maps: [
                             {
                                 name: "甘川洞文化村",
@@ -320,7 +327,7 @@
                         category: "spot",
                         icon: "fa-taxi",
                         tag: "交通",
-                        img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80",
+                        img: null, // 純交通移動不放照片
                         maps: [
                             {
                                 name: "藍線公園 尾浦站",
@@ -337,7 +344,8 @@
                         icon: "fa-train",
                         tag: "核心行程",
                         badge: "已預約 16:00",
-                        img: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&auto=format&fit=crop&q=80",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Haeundae_Blueline_Park_20211113_001.jpg/800px-Haeundae_Blueline_Park_20211113_001.jpg",
+                        imgLabel: "海雲臺藍線公園彩色天空膠囊列車實拍",
                         maps: [
                             {
                                 name: "海雲臺天空膠囊列車 (尾浦)",
@@ -354,7 +362,8 @@
                         icon: "fa-bowl-food",
                         tag: "晚餐候選",
                         badge: "清單美食",
-                        img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop&q=80",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Gomtang.jpg/800px-Gomtang.jpg",
+                        imgLabel: "巨大牛肉湯飯 / 濃醇乳白湯底",
                         maps: [
                             {
                                 name: "嚴湧帛豬肉湯飯 海雲臺店",
@@ -371,11 +380,12 @@
                     {
                         time: "19:30",
                         title: "海雲臺傳統市場 ➔ 老虎冰淇淋大福",
-                        desc: "散步逛傳統市場，飯後一定要買外皮 Q 彈的「老虎冰淇淋大福 (Horang2 Gelatteok)」解饞！",
+                        desc: "散步逛傳統市場，飯後一定要買外皮 Q 彈、附竹籤與木托盤的「老虎冰淇淋大福 (Horang2 Gelatteok)」解饞！",
                         category: "food",
                         icon: "fa-ice-cream",
                         tag: "必吃甜點",
-                        img: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=800&auto=format&fit=crop&q=80",
+                        img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&auto=format&fit=crop&q=80",
+                        imgLabel: "海雲臺名物老虎義式冰淇淋大福 (호랑이젤라떡)",
                         maps: [
                             {
                                 name: "老虎冰淇淋大福",
@@ -403,7 +413,8 @@
                         category: "spot",
                         icon: "fa-umbrella-beach",
                         tag: "景點",
-                        img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Gwangan_Bridge%2C_Busan%2C_South_Korea.jpg/800px-Gwangan_Bridge%2C_Busan%2C_South_Korea.jpg",
+                        imgLabel: "廣安里沙灘與著名地標廣安大橋 (광안대교)",
                         maps: [
                             {
                                 name: "廣安里海水浴場",
@@ -421,6 +432,7 @@
                         tag: "午餐候選",
                         badge: "海景餐廳",
                         img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop&q=80",
+                        imgLabel: "面海第一排落地窗景緻午餐",
                         maps: [
                             {
                                 name: "Guess WHO Restaurant",
@@ -437,12 +449,13 @@
                     {
                         time: "14:00 - 17:30",
                         title: "SPA LAND Centum City (新世界百貨)",
-                        desc: "【貴婦體驗】韓國頂級溫泉汗蒸幕！體驗十幾種主題蒸氣房、露天足浴，綁羊角頭巾喝甜米釀吃烤蛋。",
+                        desc: "【貴婦體驗】韓國頂級天然溫泉汗蒸幕！體驗十幾種不同溫度主題蒸氣房、露天足浴，綁羊角頭巾喝甜米釀吃烤蛋。",
                         category: "shop",
                         icon: "fa-hot-tub-person",
                         tag: "放鬆體驗",
                         badge: "必去汗蒸幕",
-                        img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&auto=format&fit=crop&q=80",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Shinsegae_Centum_City_Department_Store.jpg/800px-Shinsegae_Centum_City_Department_Store.jpg",
+                        imgLabel: "新世界百貨 Centum City / SPA LAND 頂級溫泉館",
                         maps: [
                             {
                                 name: "新世界 SPA LAND",
@@ -454,12 +467,13 @@
                     {
                         time: "18:30",
                         title: "晚餐：1988 釜山韓牛 (1988busanhanwoo)",
-                        desc: "邊欣賞廣安大橋浪漫璀璨夜景，邊品嚐頂級全程代烤韓牛燒肉，肉質油花滿分！",
+                        desc: "邊欣賞廣安大橋浪漫璀璨夜景，邊品嚐頂級全程專人代烤韓牛燒肉，肉質油花鮮嫩多汁！",
                         category: "food",
                         icon: "fa-fire",
                         tag: "奢華晚餐",
                         badge: "清單美食",
                         img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80",
+                        imgLabel: "廣安里海景炭火頂級代烤韓牛",
                         maps: [
                             {
                                 name: "1988 釜山韓牛",
@@ -483,6 +497,7 @@
                         icon: "fa-bag-shopping",
                         tag: "購物血拼",
                         img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&auto=format&fit=crop&q=80",
+                        imgLabel: "田浦風格設計選品店與潮流服飾",
                         maps: [
                             {
                                 name: "西面地下街",
@@ -505,6 +520,7 @@
                         tag: "午/晚餐候選",
                         badge: "清單名店",
                         img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800&auto=format&fit=crop&q=80",
+                        imgLabel: "田浦 Cor Pasta Bar 精緻手工義大利麵",
                         maps: [
                             {
                                 name: "Cor Pasta Bar",
@@ -531,6 +547,7 @@
                         icon: "fa-camera-retro",
                         tag: "活動/甜點",
                         img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&auto=format&fit=crop&q=80",
+                        imgLabel: "田浦咖啡街特色甜點與拿鐵",
                         maps: [
                             {
                                 name: "田浦咖啡街",
@@ -554,6 +571,7 @@
                         icon: "fa-mug-hot",
                         tag: "悠閒早午餐",
                         img: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&auto=format&fit=crop&q=80",
+                        imgLabel: "韓系溫馨陽光早午餐拼盤",
                         maps: [
                             {
                                 name: "田浦早午餐街區",
@@ -570,6 +588,7 @@
                         icon: "fa-cart-shopping",
                         tag: "最後採買",
                         img: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=800&auto=format&fit=crop&q=80",
+                        imgLabel: "大型超市伴手禮零食貨架衝刺",
                         maps: [
                             {
                                 name: "樂天超市 光復店",
@@ -590,7 +609,7 @@
                         category: "spot",
                         icon: "fa-plane-departure",
                         tag: "機場搭機",
-                        img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&auto=format&fit=crop&q=80",
+                        img: null, // 機場不用照片
                         maps: [
                             {
                                 name: "金海國際機場 (國際線)",
@@ -655,7 +674,7 @@
                     };
                     const categoryBadgeClass = categoryColors[item.category] || "bg-gray-500 text-white";
 
-                    // Map action buttons HTML
+                    // 導航連結按鈕
                     let mapsHtml = '';
                     if (item.maps && item.maps.length > 0) {
                         mapsHtml = `
@@ -667,7 +686,7 @@
                                     <div class="inline-flex items-center bg-white/90 border border-rose-200/80 rounded-xl px-2.5 py-1 text-xs shadow-sm">
                                         <span class="font-semibold text-warmDark mr-2 text-[11px]">${m.name}</span>
                                         <div class="flex items-center gap-1.5 border-l border-gray-200 pl-2">
-                                            <a href="${m.naver}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-[#03C75A] hover:opacity-80 transition" title="使用 Naver 地圖開啟">
+                                            <a href="${m.naver}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-[#03C75A] hover:opacity-80 transition" title="在 Naver Map 查看店家實拍與路線">
                                                 <span class="bg-[#03C75A] text-white text-[9px] font-black px-1 rounded">N</span>
                                                 <span class="text-[11px]">Naver</span>
                                             </a>
@@ -683,12 +702,13 @@
                         `;
                     }
 
-                    // Card Image HTML with Fallback
+                    // 實景縮圖區塊 (若 item.img 為 null 則完全不顯示圖片區塊)
                     const imageHtml = item.img ? `
                         <div class="relative w-full h-44 sm:h-56 rounded-xl overflow-hidden mb-3.5 group shadow-inner bg-rose-50/50">
                             <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.onerror=null; this.src='${DEFAULT_FALLBACK_IMG}'">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
-                                <span class="text-white text-xs font-medium drop-shadow"><i class="fa-solid fa-camera mr-1"></i>${item.title}</span>
+                            <div class="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-sm text-white text-[10px] sm:text-xs px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow">
+                                <i class="fa-solid fa-camera text-rose-300"></i>
+                                <span>${item.imgLabel || item.title}</span>
                             </div>
                         </div>
                     ` : '';
