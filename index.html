@@ -75,7 +75,7 @@
                 釜山姊妹淘 5 Days 悠閒自由行
             </h1>
             <p class="text-xs sm:text-base text-gray-600 font-medium mb-4">
-                2026.12.07 (日) ➔ 2026.12.11 (四) ‧ 悠閒浪漫姐妹小旅行 ✨
+                2026.12.07 (一) ➔ 2026.12.11 (五) ‧ 悠閒浪漫姐妹小旅行 ✨
             </p>
 
             <!-- Flight Badge -->
@@ -143,28 +143,417 @@
             </div>
         </div>
 
-        <!-- Days Navigation Tabs (預設 Day 1 高亮為玫瑰粉) -->
+        <!-- Days Navigation Tabs -->
         <div class="flex gap-2 overflow-x-auto hide-scrollbar mb-6 pb-1">
-            <button onclick="switchDay(1)" id="tab-day1" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-rose-500 text-white shadow-md border border-rose-100 transition duration-200">
-                <div class="text-[10px] font-bold text-rose-100 uppercase tracking-wider">DAY 1</div>
-                <div class="text-xs sm:text-sm font-bold text-white">2026/12/07 (日)</div>
-                <div class="text-[11px] text-rose-100 mt-0.5">南浦洞 & 夜景</div>
+            <button onclick="switchDay(1)" id="tab-day1" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-white shadow-sm border border-rose-100 transition duration-200">
+                <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">DAY 1</div>
+                <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/07 (一)</div>
+                <div class="text-[11px] text-gray-400 mt-0.5">南浦洞 & 夜景</div>
             </button>
             <button onclick="switchDay(2)" id="tab-day2" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-white shadow-sm border border-rose-100 transition duration-200 opacity-70">
                 <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">DAY 2</div>
-                <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/08 (一)</div>
+                <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/08 (二)</div>
                 <div class="text-[11px] text-gray-400 mt-0.5">膠囊列車 & 甘川</div>
             </button>
             <button onclick="switchDay(3)" id="tab-day3" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-white shadow-sm border border-rose-100 transition duration-200 opacity-70">
                 <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">DAY 3</div>
-                <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/09 (二)</div>
+                <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/09 (三)</div>
                 <div class="text-[11px] text-gray-400 mt-0.5">Spa Land & 韓牛</div>
             </button>
             <button onclick="switchDay(4)" id="tab-day4" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-white shadow-sm border border-rose-100 transition duration-200 opacity-70">
                 <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">DAY 4</div>
-                <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/10 (三)</div>
+                <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/10 (四)</div>
                 <div class="text-[11px] text-gray-400 mt-0.5">西面逛街 & 拍貼</div>
             </button>
             <button onclick="switchDay(5)" id="tab-day5" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-white shadow-sm border border-rose-100 transition duration-200 opacity-70">
                 <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">DAY 5</div>
-                <div class
+                <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/11 (五)</div>
+                <div class="text-[11px] text-gray-400 mt-0.5">早午餐 & 返台</div>
+            </button>
+        </div>
+
+        <!-- Timeline Content Section -->
+        <div id="timeline-wrapper" class="space-y-4">
+            <!-- Timeline items rendered dynamically -->
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 text-center text-xs text-gray-400 py-6 border-t border-rose-100 print:hidden">
+        <p>💖 祝女孩們 2026 釜山之旅超級快樂！拍滿漂亮美照大豐收 💖</p>
+    </footer>
+
+    <script>
+        // Data Structure for 5-Day Itinerary (2026)
+        const itineraryData = {
+            1: {
+                title: "Day 1 ‧ 抵達釜山 ➔ 南浦洞經典漫步 ➔ 韓味午餐 & 樂天夜景",
+                date: "2026/12/07 (一)",
+                badge: "南浦洞 / 扎嘎其區域",
+                items: [
+                    {
+                        time: "10:50",
+                        title: "抵達金海機場 (PUS)",
+                        desc: "辦理入境、領取行李，搭乘 Kakao T 計程車或地鐵前往南浦洞飯店寄放行李。",
+                        category: "spot",
+                        icon: "fa-plane-arrival",
+                        tag: "交通"
+                    },
+                    {
+                        time: "13:30",
+                        title: "午餐 (首選道地韓味)",
+                        desc: "<b>候選 1：Anmok 釜山站店 (안목)</b> - 米其林推薦溫潤優雅的豬肉湯飯。<br><b>候選 2：扎嘎其市場 2F</b> - 現切生魚片、烤魚或辣海鮮湯。<br><b>候選 3：味贊王鹽烤肉</b> - 厚切爆汁豬五花。",
+                        category: "food",
+                        icon: "fa-utensils",
+                        tag: "美食首選",
+                        badge: "米其林推薦 / 海鮮"
+                    },
+                    {
+                        time: "15:00 - 18:00",
+                        title: "南浦洞 & BIFF 廣場漫步 + 韓系拍貼機",
+                        desc: "掃蕩 BIFF 廣場黑糖餅 (Seed Hotteok)、辣炒年糕。與姐妹們在 Photoism / Life Four Cuts 拍攝第一組四格拍貼照！",
+                        category: "shop",
+                        icon: "fa-camera",
+                        tag: "打卡/活動"
+                    },
+                    {
+                        time: "16:30",
+                        title: "下午茶：李在模披薩 本店 (Ijaemo Pizza)",
+                        desc: "釜山爆款起司披薩！建議外帶小份披薩作為下午茶分享，省去正餐時間的人潮排隊。",
+                        category: "food",
+                        icon: "fa-pizza-slice",
+                        tag: "下午茶候選",
+                        badge: "清單美食"
+                    },
+                    {
+                        time: "18:30",
+                        title: "樂天百貨光復店夜景 ➔ 樂天超市採買",
+                        desc: "登上 13 樓免費 Sky Park 俯瞰釜山港夜景與影島大橋，隨後至 B1 樂天超市採買零食伴手禮。",
+                        category: "spot",
+                        icon: "fa-city",
+                        tag: "景點/購物"
+                    }
+                ]
+            },
+            2: {
+                title: "Day 2 ‧ 彩繪童話山城 ➔ 膠囊列車海景 ➔ 頂級海雲臺美食",
+                date: "2026/12/08 (二)",
+                badge: "甘川洞 / 海雲臺區域",
+                items: [
+                    {
+                        time: "11:00",
+                        title: "甘川洞文化村 (Gamcheon Culture Village)",
+                        desc: "睡飽優雅出發！彩色小屋山城漫步，別忘了在熱門打卡點「小王子與沙漠狐狸」拍照留念。",
+                        category: "spot",
+                        icon: "fa-image",
+                        tag: "景點必訪"
+                    },
+                    {
+                        time: "14:30",
+                        title: "移動至海雲臺區",
+                        desc: "搭車前往海雲臺藍線公園尾浦站準備搭乘列車。",
+                        category: "spot",
+                        icon: "fa-taxi",
+                        tag: "交通"
+                    },
+                    {
+                        time: "16:00 (預約)",
+                        title: "海雲臺天空膠囊列車 (Sky Capsule)",
+                        desc: "【核心行程】尾浦站 ➔ 青沙浦站。沿海岸高架行駛，隔著玻璃窗欣賞絕美夕陽海景與繽紛車廂。",
+                        category: "spot",
+                        icon: "fa-train",
+                        tag: "核心行程",
+                        badge: "已預約 16:00"
+                    },
+                    {
+                        time: "18:00",
+                        title: "晚餐 (海雲臺極品美味)",
+                        desc: "<b>候選 1：嚴湧帛豬肉湯飯 (Eomyongbaek)</b> - 精緻擺盤與極致清爽濃郁湯頭。<br><b>候選 2：巨大牛肉湯飯 (Geodae Gomtang)</b> - 頂級乳白牛肉湯底。",
+                        category: "food",
+                        icon: "fa-bowl-food",
+                        tag: "晚餐候選",
+                        badge: "清單美食"
+                    },
+                    {
+                        time: "19:30",
+                        title: "海雲臺傳統市場 ➔ 老虎冰淇淋大福",
+                        desc: "散步逛傳統市場，飯後一定要買外皮 Q 彈的「老虎冰淇淋大福 (Horang2 Gelatteok)」解饞！",
+                        category: "food",
+                        icon: "fa-ice-cream",
+                        tag: "必吃甜點"
+                    }
+                ]
+            },
+            3: {
+                title: "Day 3 ‧ 廣安里無敵海景 ➔ Spa Land 貴婦汗蒸幕 ➔ 海景韓牛燒肉",
+                date: "2026/12/09 (三)",
+                badge: "廣安里 / Centum City",
+                items: [
+                    {
+                        time: "11:00",
+                        title: "廣安里海岸漫步",
+                        desc: "欣賞沙灘與廣安大橋交織的海天一色景致。",
+                        category: "spot",
+                        icon: "fa-umbrella-beach",
+                        tag: "景點"
+                    },
+                    {
+                        time: "11:30",
+                        title: "午餐 (無敵海景選品)",
+                        desc: "<b>候選 1：Guess WHO Restaurant</b> - 面海第一排落地窗，一邊看海一邊吃義大利麵/披薩。<br><b>候選 2：AllSunday (AllSunday gwangan)</b> - 廣安里海景熱門現烤貝果咖啡廳。",
+                        category: "food",
+                        icon: "fa-cookie-bite",
+                        tag: "午餐候選",
+                        badge: "海景餐廳"
+                    },
+                    {
+                        time: "14:00 - 17:30",
+                        title: "SPA LAND Centum City (新世界百貨)",
+                        desc: "【貴婦體驗】韓國頂級溫泉汗蒸幕！體驗十幾種主題蒸氣房、露天足浴，綁羊角頭巾喝甜米釀吃烤蛋。",
+                        category: "shop",
+                        icon: "fa-hot-tub-person",
+                        tag: "放鬆體驗",
+                        badge: "必去汗蒸幕"
+                    },
+                    {
+                        time: "18:30",
+                        title: "晚餐：1988 釜山韓牛 (1988busanhanwoo)",
+                        desc: "邊欣賞廣安大橋浪漫璀璨夜景，邊品嚐頂級全程代烤韓牛燒肉，質感滿分！",
+                        category: "food",
+                        icon: "fa-fire",
+                        tag: "奢華晚餐",
+                        badge: "清單美食"
+                    }
+                ]
+            },
+            4: {
+                title: "Day 4 ‧ 西面 & 田浦潮流購物 ➔ 拍貼機大賽 ➔ 質感風格聚餐",
+                date: "2026/12/10 (四)",
+                badge: "西面 / 田浦咖啡街",
+                items: [
+                    {
+                        time: "11:00",
+                        title: "西面地下街 & 田浦購物血拼",
+                        desc: "掃蕩西面地下街平價流行服飾、飾品，接著逛田浦洞獨立選品店與設計師品牌 (尋找質感服飾)。",
+                        category: "shop",
+                        icon: "fa-bag-shopping",
+                        tag: "購物血拼"
+                    },
+                    {
+                        time: "13:00",
+                        title: "午餐/聚餐 (西面質感美食)",
+                        desc: "<b>候選 1：Cor Pasta Bar</b> - 田浦洞預約制精緻義大利麵 Bar。<br><b>候選 2：老宅邸燒肉 (Old Mansion)</b> - 復古古民家氛圍韓式燒肉。<br><b>候選 3：손내향미 (Sonnae Hyangmi)</b> - 高質感韓式釜飯專賣。",
+                        category: "food",
+                        icon: "fa-utensils",
+                        tag: "午/晚餐候選",
+                        badge: "清單名店"
+                    },
+                    {
+                        time: "15:30",
+                        title: "田浦咖啡街甜點 & 韓系拍貼機大賽",
+                        desc: "西面是拍貼機超級戰區！挑選各式可愛頭飾與聯名框，和姐妹們多拍幾組紀念照。",
+                        category: "shop",
+                        icon: "fa-camera-retro",
+                        tag: "活動/甜點"
+                    }
+                ]
+            },
+            5: {
+                title: "Day 5 ‧ 悠閒早午餐 ➔ 超市最後採購 ➔ 快樂賦歸",
+                date: "2026/12/11 (五)",
+                badge: "返台日 (19:50 航班)",
+                items: [
+                    {
+                        time: "11:00",
+                        title: "退房 ➔ 質感早午餐與咖啡",
+                        desc: "睡到自然醒辦理退房，挑選一家美感滿分的咖啡廳享受悠閒早午餐與韓系甜點。",
+                        category: "food",
+                        icon: "fa-mug-hot",
+                        tag: "悠閒早午餐"
+                    },
+                    {
+                        time: "14:00",
+                        title: "超市伴手禮最後衝刺",
+                        desc: "前往大型超市 (樂天超市 / E-mart) 進行泡麵、韓國零食、海苔與醬料大採購！",
+                        category: "shop",
+                        icon: "fa-cart-shopping",
+                        tag: "最後採買"
+                    },
+                    {
+                        time: "17:00",
+                        title: "前往金海國際機場 (PUS)",
+                        desc: "搭車前往機場辦理退稅、登機手續。<br><b>回程航班：19:50 PUS ➔ 21:30 TPE</b>",
+                        category: "spot",
+                        icon: "fa-plane-departure",
+                        tag: "機場搭機"
+                    }
+                ]
+            }
+        };
+
+        // Bucket list items (Updated)
+        const bucketListItems = [
+            { id: "b1", text: "扎嘎其市場 / BIFF 廣場吃黑糖餅" },
+            { id: "b2", text: "海雲臺天空膠囊列車 (2026/12/8 16:00 預約)" },
+            { id: "b3", text: "甘川洞文化村與小王子合影" },
+            { id: "b4", text: "吃老虎冰淇淋大福 (Horang2 Gelatteok)" },
+            { id: "b5", text: "SPA LAND Centum City 羊角包汗蒸幕" },
+            { id: "b6", text: "Guess WHO 海景餐廳 / 廣安里 1988 韓牛" },
+            { id: "b7", text: "西面 Cor Pasta Bar / 老宅邸燒肉" },
+            { id: "b8", text: "李在模披薩 (Ijaemo Pizza) 起司饗宴" },
+            { id: "b9", text: "西面 & 南浦洞韓系無人拍貼機" }
+        ];
+
+        let currentDay = 1;
+        let activeCategory = 'all';
+
+        // Render Page Function
+        function renderTimeline() {
+            const wrapper = document.getElementById('timeline-wrapper');
+            const dayData = itineraryData[currentDay];
+            
+            let html = `
+                <div class="glass-card rounded-2xl p-5 mb-4 border-l-4 border-rose-400 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-rose-500 bg-rose-50 px-2.5 py-1 rounded-md uppercase mb-1 inline-block">${dayData.date}</span>
+                        <h2 class="text-base sm:text-lg font-bold text-warmDark">${dayData.title}</h2>
+                    </div>
+                    <span class="hidden sm:inline-block bg-white text-gray-600 border border-gray-200 text-xs px-3 py-1.5 rounded-xl font-medium">${dayData.badge}</span>
+                </div>
+            `;
+
+            const filteredItems = dayData.items.filter(item => {
+                if (activeCategory === 'all') return true;
+                return item.category === activeCategory;
+            });
+
+            if (filteredItems.length === 0) {
+                html += `
+                    <div class="text-center py-12 bg-white/50 rounded-2xl border border-dashed border-rose-200">
+                        <i class="fa-solid fa-filter text-gray-300 text-3xl mb-2"></i>
+                        <p class="text-xs text-gray-400">該分類在此日期無相關行程安排</p>
+                    </div>
+                `;
+            } else {
+                filteredItems.forEach((item, index) => {
+                    const categoryColors = {
+                        food: "bg-rose-500 text-white",
+                        spot: "bg-ocean text-white",
+                        shop: "bg-purple-500 text-white"
+                    };
+
+                    const categoryBadgeClass = categoryColors[item.category] || "bg-gray-500 text-white";
+
+                    html += `
+                        <div class="glass-card rounded-2xl p-5 custom-shadow transition duration-300 hover:translate-y-[-2px] relative overflow-hidden">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="${categoryBadgeClass} w-9 h-9 rounded-xl flex items-center justify-center text-sm shadow-sm flex-shrink-0">
+                                        <i class="fa-solid ${item.icon}"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs font-extrabold text-rose-400 tracking-wider">${item.time}</span>
+                                        <h3 class="text-base font-bold text-warmDark">${item.title}</h3>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 self-start sm:self-auto">
+                                    ${item.badge ? `<span class="bg-amber-100 text-amber-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full">${item.badge}</span>` : ''}
+                                    <span class="bg-gray-100 text-gray-600 text-[11px] font-medium px-2 py-0.5 rounded-md">${item.tag}</span>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed pl-0 sm:pl-12">
+                                ${item.desc}
+                            </p>
+                        </div>
+                    `;
+                });
+            }
+
+            wrapper.innerHTML = html;
+        }
+
+        // Switch Day Tabs
+        function switchDay(day) {
+            currentDay = day;
+            document.querySelectorAll('.day-tab').forEach((tab, i) => {
+                if (i + 1 === day) {
+                    tab.classList.remove('opacity-70', 'bg-white');
+                    tab.classList.add('bg-rose-500', 'text-white', 'shadow-md');
+                    tab.querySelector('.text-rose-400').classList.replace('text-rose-400', 'text-rose-100');
+                    tab.querySelector('.text-warmDark').classList.replace('text-warmDark', 'text-white');
+                    tab.querySelector('.text-gray-400').classList.replace('text-gray-400', 'text-rose-100');
+                } else {
+                    tab.classList.add('opacity-70', 'bg-white');
+                    tab.classList.remove('bg-rose-500', 'text-white', 'shadow-md');
+                    const r = tab.querySelector('.text-rose-100');
+                    if (r) r.classList.replace('text-rose-100', 'text-rose-400');
+                    const w = tab.querySelector('.text-white');
+                    if (w) w.classList.replace('text-white', 'text-warmDark');
+                    const g = tab.querySelector('.text-rose-100');
+                    if (g) g.classList.replace('text-rose-100', 'text-gray-400');
+                }
+            });
+            renderTimeline();
+        }
+
+        // Category Filter
+        function filterCategory(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('bg-warmDark', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-600');
+            });
+            const activeBtn = document.getElementById(`btn-${cat}`);
+            if(activeBtn) {
+                activeBtn.classList.add('bg-warmDark', 'text-white');
+                activeBtn.classList.remove('bg-white', 'text-gray-600');
+            }
+            renderTimeline();
+        }
+
+        // Bucket List Panel Toggle
+        function toggleBucketList() {
+            const panel = document.getElementById('bucket-panel');
+            panel.classList.toggle('hidden');
+        }
+
+        // Render Checklist
+        function renderChecklist() {
+            const container = document.getElementById('checklist-container');
+            let html = '';
+            bucketListItems.forEach(item => {
+                html += `
+                    <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/70 hover:bg-white border border-gray-100 cursor-pointer transition">
+                        <input type="checkbox" id="${item.id}" onchange="updateBucketCount()" class="w-4 h-4 rounded text-rose-500 focus:ring-rose-400 border-gray-300">
+                        <span id="label-${item.id}" class="text-xs sm:text-sm font-medium text-gray-700">${item.text}</span>
+                    </label>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Update Checklist Count
+        function updateBucketCount() {
+            let count = 0;
+            bucketListItems.forEach(item => {
+                const cb = document.getElementById(item.id);
+                const label = document.getElementById(`label-${item.id}`);
+                if (cb && cb.checked) {
+                    count++;
+                    label.classList.add('checked-item');
+                } else if (label) {
+                    label.classList.remove('checked-item');
+                }
+            });
+            document.getElementById('bucket-count').innerText = `${count}/${bucketListItems.length}`;
+        }
+
+        // Init
+        window.onload = function() {
+            renderChecklist();
+            switchDay(1);
+        };
+    </script>
+</body>
+</html>
