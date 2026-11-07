@@ -102,44 +102,51 @@
     <!-- Main Container -->
     <main class="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-20">
         <!-- Quick Stats & Filter Bar -->
-        <!-- 🏨 住宿飯店專屬小卡 (已移除前置 Icon，版面更清爽) -->
-        <div class="glass-card rounded-2xl p-4 sm:p-5 mb-6 custom-shadow border border-rose-200/80 bg-gradient-to-r from-rose-50/80 via-pink-50/60 to-amber-50/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div>
-                <!-- 飯店名稱與住宿標籤 -->
-                <div class="flex items-center gap-2 flex-wrap">
-                    <span class="text-[11px] font-bold text-rose-500 bg-white px-2.5 py-0.5 rounded-full border border-rose-200 shadow-xs">本次住宿</span>
+        <!-- 🏨 住宿飯店專屬小卡 (時間與地址置中、地圖標籤等比縮小) -->
+        <div class="glass-card rounded-2xl p-4 sm:p-5 mb-6 custom-shadow border border-rose-200/80 bg-gradient-to-r from-rose-50/80 via-pink-50/60 to-amber-50/60 flex flex-col sm:flex-row items-center justify-between gap-3.5 text-center sm:text-left">
+            <div class="w-full sm:w-auto">
+                <!-- 飯店名稱與住宿標籤 (置中) -->
+                <div class="flex items-center justify-center sm:justify-start gap-2 flex-wrap">
+                    <span class="text-[11px] font-bold text-rose-500 bg-white px-2 py-0.5 rounded-full border border-rose-200 shadow-xs">本次住宿</span>
                     <h3 class="text-base sm:text-lg font-bold text-warmDark">Wonaenu Mareu (廣安里海景)</h3>
                 </div>
 
-                <!-- 🌟 入住與退房時間標記 -->
-                <div class="flex items-center gap-2 mt-1.5 flex-wrap text-xs">
-                    <span class="inline-flex items-center gap-1 bg-amber-100 text-amber-800 font-semibold px-2 py-0.5 rounded-md">
+                <!-- 🌟 1. 入住與退房時間標記 (置中) -->
+                <div class="flex items-center justify-center sm:justify-start gap-2 mt-2 flex-wrap text-xs">
+                    <span class="inline-flex items-center gap-1 bg-amber-100 text-amber-800 font-semibold px-2 py-0.5 rounded-md text-[11px]">
                         <i class="fa-solid fa-key text-[10px]"></i> 入住 15:00 後
                     </span>
-                    <span class="inline-flex items-center gap-1 bg-rose-100 text-rose-700 font-semibold px-2 py-0.5 rounded-md">
+                    <span class="inline-flex items-center gap-1 bg-rose-100 text-rose-700 font-semibold px-2 py-0.5 rounded-md text-[11px]">
                         <i class="fa-solid fa-clock-rotate-left text-[10px]"></i> 退房 11:00 前
                     </span>
                 </div>
 
-                <!-- 韓文地址 (搭計程車直接給司機看) -->
-                <p class="text-xs text-gray-500 mt-1.5 flex items-center gap-1" title="搭計程車直接給司機看此韓文">
-                    <i class="fa-solid fa-location-dot text-rose-400"></i>
-                    <span>부산 수영구 민락수변로 125 (민락동 110-87) 골든뷰</span>
+                <!-- 🌟 2. 韓文地址 (搭計程車直接給司機看 - 置中) -->
+                <p class="text-xs text-gray-600 mt-2 flex items-center justify-center sm:justify-start gap-1.5" title="搭計程車直接給司機看此韓文">
+                    <i class="fa-solid fa-location-dot text-rose-400 text-xs"></i>
+                    <span class="font-medium">부산 수영구 민락수변로 125 (민락동 110-87) 골든뷰</span>
                 </p>
             </div>
 
-            <!-- 雙地圖一鍵直達按鈕 -->
-            <div class="flex items-center gap-2 self-stretch sm:self-auto justify-end border-t sm:border-t-0 pt-3 sm:pt-0 border-rose-100/80 w-full sm:w-auto">
-                <a href="https://naver.me/FvTO34vd" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 bg-[#03C75A] text-white text-xs px-3.5 py-2 rounded-xl font-bold hover:opacity-90 transition shadow-sm">
-                    <span class="bg-white text-[#03C75A] text-[9px] font-black px-1 rounded">N</span>
-                    <span>Naver 地圖</span>
-                </a>
-                <a href="https://www.google.com/maps/search/?api=1&query=125+Millaksubyeon-ro+Suyeong-gu+Busan" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 bg-white border border-gray-200 text-gray-700 text-xs px-3.5 py-2 rounded-xl font-bold hover:bg-gray-50 transition shadow-sm">
-                    <i class="fa-brands fa-google text-blue-500"></i>
-                    <span>Google Maps</span>
-                </a>
+            <!-- 🌟 3. 地圖標籤 (改為與原行程按鈕一模一樣的小尺寸膠囊設計) -->
+            <div class="flex items-center justify-center sm:justify-end flex-shrink-0">
+                <div class="inline-flex items-center bg-white/90 border border-rose-200/80 rounded-xl px-2.5 py-1 text-xs shadow-sm">
+                    <span class="font-semibold text-warmDark mr-2 text-[11px]">Wonaenu Mareu</span>
+                    <div class="flex items-center gap-1.5 border-l border-gray-200 pl-2">
+                        <a href="https://naver.me/FvTO34vd" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-[#03C75A] hover:opacity-80 transition" title="使用 Naver 地圖開啟">
+                            <span class="bg-[#03C75A] text-white text-[9px] font-black px-1 rounded">N</span>
+                            <span class="text-[11px]">Naver</span>
+                        </a>
+                        <span class="text-gray-300">|</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=125+Millaksubyeon-ro+Suyeong-gu+Busan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-blue-500 hover:opacity-80 transition" title="使用 Google Maps 開啟">
+                            <i class="fa-brands fa-google text-xs text-blue-500"></i>
+                            <span class="text-[11px]">Google</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
+
         <div class="glass-card rounded-2xl p-4 mb-6 custom-shadow flex flex-wrap items-center justify-between gap-3">
             <!-- Filter buttons -->
             <div class="flex items-center gap-1 sm:gap-2 overflow-x-auto hide-scrollbar w-full sm:w-auto">
