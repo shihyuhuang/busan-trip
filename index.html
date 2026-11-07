@@ -1,297 +1,170 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>釜山姊妹淘 5 Days 悠閒自由行 (2026/12/7 - 12/11)</title>
-  <style>
-    :root {
-      --primary: #FF7E95;
-      --primary-hover: #E8637B;
-      --secondary: #6C5CE7;
-      --bg: #F8F9FA;
-      --card-bg: #FFFFFF;
-      --text: #2D3436;
-      --border: #DFE6E9;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      margin: 0;
-      padding: 20px 15px;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 20px;
-      background: white;
-      padding: 24px 20px;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    }
-
-    h1 {
-      color: var(--primary);
-      margin: 0 0 8px 0;
-      font-size: 24px;
-      letter-spacing: 0.5px;
-    }
-
-    .subtitle {
-      color: #636E72;
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    /* 頁籤/按鈕區塊優化 */
-    .day-tabs {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 12px;
-      margin-bottom: 20px;
-      scrollbar-width: none; /* Firefox */
-    }
-
-    .day-tabs::-webkit-scrollbar {
-      display: none; /* Chrome/Safari */
-    }
-
-    .tab-btn {
-      flex: 0 0 auto;
-      padding: 12px 18px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background-color: #FFFFFF;
-      color: #636E72;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      outline: none;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-    }
-
-    .tab-btn:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-    }
-
-    /* 被選中的按鈕高亮樣式：鮮明粉底白字 */
-    .tab-btn.active {
-      background-color: var(--primary) !important;
-      color: #FFFFFF !important;
-      border-color: var(--primary) !important;
-      box-shadow: 0 4px 12px rgba(255, 126, 149, 0.35);
-      transform: translateY(-1px);
-    }
-
-    /* 行程卡片樣式 */
-    .day-card {
-      display: none;
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 24px 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      border-left: 6px solid var(--primary);
-      animation: fadeIn 0.3s ease;
-    }
-
-    .day-card.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .day-title {
-      font-size: 19px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: #2D3436;
-      border-bottom: 2px solid #F1F2F6;
-      padding-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .day-date {
-      font-size: 13px;
-      color: #B2BEC3;
-      font-weight: normal;
-    }
-
-    ul {
-      padding-left: 0;
-      list-style: none;
-      margin: 0;
-    }
-
-    li {
-      margin-bottom: 14px;
-      line-height: 1.6;
-      font-size: 15px;
-      padding-left: 28px;
-      position: relative;
-    }
-
-    li::before {
-      content: "•";
-      color: var(--primary);
-      font-size: 22px;
-      position: absolute;
-      left: 10px;
-      top: -2px;
-    }
-
-    .tag {
-      background: #FFEAA7;
-      color: #D63031;
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: bold;
-      margin-right: 6px;
-      display: inline-block;
-    }
-
-    .tag.food { background: #FFEAA7; color: #E17055; }
-    .tag.spot { background: #E8F8F5; color: #00B894; }
-    .tag.flight { background: #E1F5FE; color: #0288D1; }
-
-    footer {
-      text-align: center;
-      margin-top: 30px;
-      color: #B2BEC3;
-      font-size: 13px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>釜山姊妹淘 5 Days 悠閒自由行</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FFF9F5',
+                        blush: '#FFECEC',
+                        rose: '#FF7B9C',
+                        softPink: '#FFACC7',
+                        peach: '#FFB896',
+                        mint: '#E4F1EE',
+                        sage: '#7DAA92',
+                        ocean: '#4EA8DE',
+                        warmDark: '#2B2D42'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FFF9F5;
+            color: #2B2D42;
+        }
+        .custom-shadow {
+            box-shadow: 0 10px 30px -5px rgba(255, 123, 156, 0.12);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .checked-item {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+    </style>
 </head>
-<body>
+<body class="min-h-screen pb-12 font-sans antialiased selection:bg-softPink selection:text-white">
 
-  <div class="container">
-    <header>
-      <h1>✈️ 釜山姊妹淘 5 Days 悠閒自由行</h1>
-      <div class="subtitle">📅 2026/12/7 (一) － 2026/12/11 (五) ｜ 每日 11:00 睡飽出發</div>
+    <!-- Header / Hero Section -->
+    <header class="relative overflow-hidden bg-gradient-to-r from-rose-100 via-pink-100 to-amber-100 pt-8 pb-12 px-4 sm:px-8 border-b border-rose-200/50">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="flex items-center justify-center gap-2 mb-3 flex-wrap">
+                <span class="bg-white/80 backdrop-blur text-rose-500 font-bold px-4 py-1 rounded-full text-xs sm:text-sm tracking-wider shadow-sm">
+                    <i class="fa-solid fa-heart mr-1.5"></i> GIRLS' TRIP IN BUSAN
+                </span>
+                <span class="bg-amber-400 text-warmDark font-extrabold px-3 py-1 rounded-full text-xs shadow-sm">
+                    <i class="fa-solid fa-clock mr-1"></i> 每日 11:00 AM 睡飽出發
+                </span>
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-warmDark tracking-tight mb-2">
+                釜山姊妹淘 5 Days 悠閒自由行
+            </h1>
+            <p class="text-xs sm:text-base text-gray-600 font-medium mb-4">
+                2026.12.07 (日) ➔ 2026.12.11 (四) ‧ 悠閒浪漫姐妹小旅行 ✨
+            </p>
+
+            <!-- Flight Badge -->
+            <div class="inline-flex flex-col sm:flex-row items-center gap-3 bg-white/90 backdrop-blur p-3 sm:px-6 rounded-2xl shadow-sm border border-rose-100 text-xs sm:text-sm">
+                <div class="flex items-center gap-2 text-gray-700">
+                    <span class="font-bold text-rose-500"><i class="fa-solid fa-plane-departure mr-1"></i>去程 2026/12/7</span>
+                    <span>07:40 TPE ➔ 10:50 PUS</span>
+                </div>
+                <div class="hidden sm:block text-gray-300">|</div>
+                <div class="flex items-center gap-2 text-gray-700">
+                    <span class="font-bold text-ocean"><i class="fa-solid fa-plane-arrival mr-1"></i>回程 2026/12/11</span>
+                    <span>19:50 PUS ➔ 21:30 TPE</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative background shapes -->
+        <div class="absolute -top-12 -left-12 w-48 h-48 bg-pink-300/20 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="absolute top-1/2 -right-12 w-64 h-64 bg-amber-200/30 rounded-full blur-3xl pointer-events-none"></div>
     </header>
 
-    <!-- 日期切換按鈕區 -->
-    <div class="day-tabs">
-      <button class="tab-btn active" onclick="switchDay(event, 'day1')">Day 1 (12/7 一)</button>
-      <button class="tab-btn" onclick="switchDay(event, 'day2')">Day 2 (12/8 二)</button>
-      <button class="tab-btn" onclick="switchDay(event, 'day3')">Day 3 (12/9 三)</button>
-      <button class="tab-btn" onclick="switchDay(event, 'day4')">Day 4 (12/10 四)</button>
-      <button class="tab-btn" onclick="switchDay(event, 'day5')">Day 5 (12/11 五)</button>
-      <button class="tab-btn" onclick="switchDay(event, 'all')">全行程預覽</button>
-    </div>
+    <!-- Main Container -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-20">
 
-    <!-- Day 1 -->
-    <div id="day1" class="day-card active">
-      <div class="day-title">
-        Day 1 ｜ 抵達釜山、南浦洞道地韓味與夜景
-        <span class="day-date">2026/12/7 週一</span>
-      </div>
-      <ul>
-        <li><span class="tag flight">航班</span><b>07:40 TPE ➔ 10:50 PUS</b> 抵達金海機場，辦理入境後搭車至飯店寄放行李。</li>
-        <li><span class="tag food">午餐</span><b>Anmok 湯飯</b>（米其林推薦） / <b>札嘎其市場鮮魚料理</b> / <b>味贊王鹽烤肉</b>。</li>
-        <li><span class="tag spot">景點</span>逛 BIFF 廣場吃黑糖餅、辣炒年糕，與姐妹拍爆韓系拍貼機。</li>
-        <li><span class="tag food">下午茶</span><b>李在模披薩 本店</b>（外帶小份經典起司披薩當下午茶）。</li>
-        <li><span class="tag spot">夜景</span><b>樂天百貨光復店</b> 頂樓觀景台看夜景 ＆ 樓下超市大採購。</li>
-      </ul>
-    </div>
+        <!-- Quick Stats & Filter Bar -->
+        <div class="glass-card rounded-2xl p-4 mb-6 custom-shadow flex flex-wrap items-center justify-between gap-3">
+            <!-- Filter buttons -->
+            <div class="flex items-center gap-1 sm:gap-2 overflow-x-auto hide-scrollbar w-full sm:w-auto">
+                <button onclick="filterCategory('all')" id="btn-all" class="category-btn active bg-warmDark text-white px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition">
+                    全部行程
+                </button>
+                <button onclick="filterCategory('food')" id="btn-food" class="category-btn bg-white text-gray-600 hover:bg-rose-50 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition border border-gray-100">
+                    <i class="fa-solid fa-utensils text-rose-400 mr-1"></i>美食吃吃 🍽️
+                </button>
+                <button onclick="filterCategory('spot')" id="btn-spot" class="category-btn bg-white text-gray-600 hover:bg-rose-50 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition border border-gray-100">
+                    <i class="fa-solid fa-camera text-ocean mr-1"></i>拍照景點 📸
+                </button>
+                <button onclick="filterCategory('shop')" id="btn-shop" class="category-btn bg-white text-gray-600 hover:bg-rose-50 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition border border-gray-100">
+                    <i class="fa-solid fa-bag-shopping text-purple-400 mr-1"></i>購物放鬆 🛍️
+                </button>
+            </div>
 
-    <!-- Day 2 -->
-    <div id="day2" class="day-card">
-      <div class="day-title">
-        Day 2 ｜ 甘川洞彩繪村、膠囊列車與高級湯飯
-        <span class="day-date">2026/12/8 週二</span>
-      </div>
-      <ul>
-        <li><span class="tag spot">景點</span><b>11:00</b> 出發前往甘川洞文化村（尋找小王子與狐狸雕像合影）。</li>
-        <li><span class="tag spot">重點</span><b>16:00 預約行程</b> 搭乘天空膠囊列車（尾浦站 ➔ 青沙浦）看夕陽海景。</li>
-        <li><span class="tag food">晚餐</span><b>嚴湧帛豬肉湯飯 海雲台店</b> 或 <b>巨大牛肉湯飯</b>（雪白濃郁湯飯）。</li>
-        <li><span class="tag food">甜點</span>逛海雲臺傳統市場，必買<b>老虎冰淇淋大福</b>！</li>
-      </ul>
-    </div>
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2 ml-auto">
+                <button onclick="window.print()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-1">
+                    <i class="fa-solid fa-print"></i>
+                    <span class="hidden sm:inline">儲存為 PDF / 列印</span>
+                </button>
+                <button onclick="toggleBucketList()" class="bg-rose-500 hover:bg-rose-600 text-white px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition shadow-sm flex items-center gap-1.5">
+                    <i class="fa-solid fa-square-check"></i>
+                    <span>打卡清單</span>
+                    <span id="bucket-count" class="bg-white/30 text-white text-xs px-1.5 py-0.5 rounded-full font-mono">0/9</span>
+                </button>
+            </div>
+        </div>
 
-    <!-- Day 3 -->
-    <div id="day3" class="day-card">
-      <div class="day-title">
-        Day 3 ｜ 廣安里無敵海景、新世界 SPA LAND 與韓牛
-        <span class="day-date">2026/12/9 週三</span>
-      </div>
-      <ul>
-        <li><span class="tag food">午餐</span><b>Guess WHO 海景餐廳</b> / <b>AllSunday 貝果</b> / <b>Tonshou 豚笑 豬排</b>。</li>
-        <li><span class="tag spot">體驗</span><b>新世界 Centum City SPA LAND</b> 頂級汗蒸幕、泡溫泉、綁羊角毛巾。</li>
-        <li><span class="tag food">晚餐</span><b>1988 釜山韓牛</b> 邊看廣安大橋夜景邊大啖頂級韓牛燒肉。</li>
-      </ul>
-    </div>
+        <!-- Bucket List Panel (Collapsible) -->
+        <div id="bucket-panel" class="hidden glass-card rounded-2xl p-5 mb-6 custom-shadow border-2 border-rose-200">
+            <h3 class="text-base font-bold text-warmDark mb-3 flex items-center justify-between">
+                <span><i class="fa-solid fa-star text-amber-400 mr-2"></i>釜山必訪熱門清單 (Bucket List)</span>
+                <span class="text-xs text-gray-400 font-normal">點擊完成打卡</span>
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="checklist-container">
+                <!-- Checklist items injected via JS -->
+            </div>
+        </div>
 
-    <!-- Day 4 -->
-    <div id="day4" class="day-card">
-      <div class="day-title">
-        Day 4 ｜ 西面田浦購物、拍貼機與精緻義麵
-        <span class="day-date">2026/12/10 週四</span>
-      </div>
-      <ul>
-        <li><span class="tag spot">購物</span>血拼西面地下街與田浦咖啡街選品店，沿路挑戰各式韓系拍貼機。</li>
-        <li><span class="tag food">晚餐</span><b>Cor Pasta Bar</b> (預約制義麵) / <b>老宅邸燒肉</b> / <b>손내향미 釜飯</b>。</li>
-      </ul>
-    </div>
-
-    <!-- Day 5 -->
-    <div id="day5" class="day-card">
-      <div class="day-title">
-        Day 5 ｜ 悠閒早午餐、超市採買與返台
-        <span class="day-date">2026/12/11 週五</span>
-      </div>
-      <ul>
-        <li><span class="tag food">早午餐</span><b>11:00</b> 退房後至西面/海雲臺質感 Cafe 享用早午餐與咖啡。</li>
-        <li><span class="tag spot">採買</span>前往大型超市（E-mart / 樂天超市）進行最後伴手禮衝刺。</li>
-        <li><span class="tag flight">航班</span><b>17:00</b> 前往金海機場，搭乘 <b>19:50 PUS ➔ 21:30 TPE</b> 班機返台。</li>
-      </ul>
-    </div>
-
-    <footer>
-      💕 預祝姊妹淘釜山之旅玩得開心！
-    </footer>
-  </div>
-
-  <script>
-    function switchDay(event, dayId) {
-      // 移除所有按鈕 active 類別
-      const buttons = document.querySelectorAll('.tab-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-
-      // 加上點擊按鈕的 active 類別
-      event.currentTarget.classList.add('active');
-
-      // 隱藏所有卡片
-      const cards = document.querySelectorAll('.day-card');
-      cards.forEach(card => card.classList.remove('active'));
-
-      // 顯示目標卡片（若選全行程則顯示全部）
-      if (dayId === 'all') {
-        cards.forEach(card => card.classList.add('active'));
-      } else {
-        document.getElementById(dayId).classList.add('active');
-      }
-    }
-  </script>
-</body>
-</html>
+        <!-- Days Navigation Tabs (預設 Day 1 高亮為玫瑰粉) -->
+        <div class="flex gap-2 overflow-x-auto hide-scrollbar mb-6 pb-1">
+            <button onclick="switchDay(1)" id="tab-day1" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-rose-500 text-white shadow-md border border-rose-100 transition duration-200">
+                <div class="text-[10px] font-bold text-rose-100 uppercase tracking-wider">DAY 1</div>
+                <div class="text-xs sm:text-sm font-bold text-white">2026/12/07 (日)</div>
+                <div class="text-[11px] text-rose-100 mt-0.5">南浦洞 & 夜景</div>
+            </button>
+            <button onclick="switchDay(2)" id="tab-day2" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-white shadow-sm border border-rose-100 transition duration-200 opacity-70">
+                <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">DAY 2</div>
+                <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/08 (一)</div>
+                <div class="text-[11px] text-gray-400 mt-0.5">膠囊列車 & 甘川</div>
+            </button>
+            <button onclick="switchDay(3)" id="tab-day3" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-white shadow-sm border border-rose-100 transition duration-200 opacity-70">
+                <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">DAY 3</div>
+                <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/09 (二)</div>
+                <div class="text-[11px] text-gray-400 mt-0.5">Spa Land & 韓牛</div>
+            </button>
+            <button onclick="switchDay(4)" id="tab-day4" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-white shadow-sm border border-rose-100 transition duration-200 opacity-70">
+                <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">DAY 4</div>
+                <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/10 (三)</div>
+                <div class="text-[11px] text-gray-400 mt-0.5">西面逛街 & 拍貼</div>
+            </button>
+            <button onclick="switchDay(5)" id="tab-day5" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-white shadow-sm border border-rose-100 transition duration-200 opacity-70">
+                <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">DAY 5</div>
+                <div class
