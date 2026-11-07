@@ -709,16 +709,39 @@
                         `;
                     }
 
-                    // 實景縮圖區塊 (若 item.img 為 null 則完全不顯示圖片區塊)
-                    const imageHtml = item.img ? `
-                        <div class="relative w-full h-44 sm:h-56 rounded-xl overflow-hidden mb-3.5 group shadow-inner bg-rose-50/50">
-                            <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.onerror=null; this.src='${DEFAULT_FALLBACK_IMG}'">
-                            <div class="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-sm text-white text-[10px] sm:text-xs px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow">
-                                <i class="fa-solid fa-camera text-rose-300"></i>
-                                <span>${item.imgLabel || item.title}</span>
+                    // 實景縮圖區塊 (同時支援 images 多圖雙欄排版與單圖 img)
+                    let imageHtml = '';
+                    if (item.images && item.images.length > 0) {
+                        // 雙圖 / 多圖並排顯示
+                        imageHtml = `
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-3.5">
+                                ${item.images.map((imgItem, idx) => `
+                                    <div class="relative w-full h-40 sm:h-48 rounded-xl overflow-hidden group shadow-inner bg-rose-50/50">
+                                        <img src="${imgItem.url}"
+                                             alt="${imgItem.label || item.title}"
+                                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                             loading="lazy"
+                                             onerror="this.onerror=null; this.src='${DEFAULT_FALLBACK_IMG}'">
+                                        <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm text-white text-[10px] px-2 py-0.5 rounded-lg flex items-center gap-1 shadow">
+                                            <i class="fa-solid fa-camera text-rose-300"></i>
+                                            <span>${imgItem.label || (idx === 0 ? '西面地下街' : '田浦選品店')}</span>
+                                        </div>
+                                    </div>
+                                `).join('')}
                             </div>
-                        </div>
-                    ` : '';
+                        `;
+                    } else if (item.img) {
+                        // 單張圖片顯示
+                        imageHtml = `
+                            <div class="relative w-full h-44 sm:h-56 rounded-xl overflow-hidden mb-3.5 group shadow-inner bg-rose-50/50">
+                                <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.onerror=null; this.src='${DEFAULT_FALLBACK_IMG}'">
+                                <div class="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-sm text-white text-[10px] sm:text-xs px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow">
+                                    <i class="fa-solid fa-camera text-rose-300"></i>
+                                    <span>${item.imgLabel || item.title}</span>
+                                </div>
+                            </div>
+                        `;
+                    }
 
                     html += `
                         <div class="glass-card rounded-2xl p-5 custom-shadow transition duration-300 hover:translate-y-[-2px] relative overflow-hidden">
