@@ -102,6 +102,34 @@
     <!-- Main Container -->
     <main class="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-20">
         <!-- Quick Stats & Filter Bar -->
+        <!-- 🏨 住宿飯店專屬小卡 -->
+        <div class="glass-card rounded-2xl p-4 mb-6 custom-shadow border border-rose-200/80 bg-gradient-to-r from-rose-50/70 to-pink-50/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-rose-500 text-white flex items-center justify-center text-lg shadow-sm flex-shrink-0">
+                    <i class="fa-solid fa-hotel"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[11px] font-bold text-rose-500 bg-white px-2 py-0.5 rounded-full border border-rose-200">本次住宿</span>
+                        <h3 class="text-sm sm:text-base font-bold text-warmDark">Wonaenu Mareu (廣安里海景)</h3>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-0.5">
+                        부산 수영구 민락수변로 125 (민락동 110-87)
+                    </p>
+                </div>
+            </div>
+            <!-- 飯店地圖按鈕 -->
+            <div class="flex items-center gap-2 self-end sm:self-auto">
+                <a href="https://naver.me/FvTO34vd" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-[#03C75A] text-white text-xs px-3 py-1.5 rounded-xl font-bold hover:opacity-90 transition shadow-sm">
+                    <span class="bg-white text-[#03C75A] text-[9px] font-black px-1 rounded">N</span>
+                    <span>Naver 導航</span>
+                </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=125+Millaksubyeon-ro+Suyeong-gu+Busan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-700 text-xs px-3 py-1.5 rounded-xl font-bold hover:bg-gray-50 transition shadow-sm">
+                    <i class="fa-brands fa-google text-blue-500"></i>
+                    <span>Google Maps</span>
+                </a>
+            </div>
+        </div>
         <div class="glass-card rounded-2xl p-4 mb-6 custom-shadow flex flex-wrap items-center justify-between gap-3">
             <!-- Filter buttons -->
             <div class="flex items-center gap-1 sm:gap-2 overflow-x-auto hide-scrollbar w-full sm:w-auto">
@@ -197,8 +225,8 @@
                 items: [
                     {
                         time: "10:50",
-                        title: "抵達金海機場 (PUS)",
-                        desc: "辦理入境、領取行李，搭乘 Kakao T 計程車或地鐵前往南浦洞飯店寄放行李。",
+                        title: "抵達金海機場 (PUS) ➔ 前往廣安里飯店",
+                        desc: "辦理入境、領取行李，搭乘 Kakao T 計程車或地鐵前往水營區廣安里飯店 <b>Wonaenu Mareu</b> 民宿寄放行李。",
                         category: "spot",
                         icon: "fa-plane-arrival",
                         tag: "交通",
@@ -584,8 +612,8 @@
                 items: [
                     {
                         time: "11:00",
-                        title: "退房 ➔ 質感早午餐與咖啡",
-                        desc: "睡到自然醒辦理退房，挑選一家美感滿分的咖啡廳享受悠閒早午餐與韓系甜點。",
+                        title: "Wonaenu Mareu 退房 ➔ 質感早午餐與咖啡",
+                        desc: "睡到自然醒在 Wonaenu Mareu 欣賞最後的廣安大橋海景並辦理退房，隨後前往田浦挑選美感滿分的咖啡廳享受悠閒早午餐。",
                         category: "food",
                         icon: "fa-mug-hot",
                         tag: "悠閒早午餐",
