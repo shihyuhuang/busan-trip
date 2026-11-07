@@ -712,14 +712,15 @@
                     // 實景縮圖區塊 (同時支援 images 多圖雙欄排版與單圖 img)
                     let imageHtml = '';
                     if (item.images && item.images.length > 0) {
-                        // 雙圖 / 多圖並排顯示
+                        // 🌟 專屬於「西面地下街 & 田浦選品店」：高度自動隨圖片撐開、完整顯示不裁切
                         imageHtml = `
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-3.5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3.5 items-start">
                                 ${item.images.map((imgItem, idx) => `
-                                    <div class="relative w-full h-40 sm:h-48 rounded-xl overflow-hidden group shadow-inner bg-rose-50/50">
+                                    <div class="relative w-full rounded-xl overflow-hidden group shadow-sm bg-rose-50/30 border border-rose-100">
+                                        <!-- 使用 h-auto 與 object-contain 確保整張圖片 100% 完整呈現 -->
                                         <img src="${imgItem.url}"
                                              alt="${imgItem.label || item.title}"
-                                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                             class="w-full h-auto object-contain block transition-transform duration-300 group-hover:scale-102"
                                              loading="lazy"
                                              onerror="this.onerror=null; this.src='${DEFAULT_FALLBACK_IMG}'">
                                         <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm text-white text-[10px] px-2 py-0.5 rounded-lg flex items-center gap-1 shadow">
@@ -731,10 +732,14 @@
                             </div>
                         `;
                     } else if (item.img) {
-                        // 單張圖片顯示
+                        // 🔒 其他所有行程：完全維持原本設定「固定高度 (h-44 sm:h-56) + 填滿裁切 (object-cover)」
                         imageHtml = `
                             <div class="relative w-full h-44 sm:h-56 rounded-xl overflow-hidden mb-3.5 group shadow-inner bg-rose-50/50">
-                                <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.onerror=null; this.src='${DEFAULT_FALLBACK_IMG}'">
+                                <img src="${item.img}"
+                                     alt="${item.title}"
+                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                     loading="lazy"
+                                     onerror="this.onerror=null; this.src='${DEFAULT_FALLBACK_IMG}'">
                                 <div class="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-sm text-white text-[10px] sm:text-xs px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow">
                                     <i class="fa-solid fa-camera text-rose-300"></i>
                                     <span>${item.imgLabel || item.title}</span>
