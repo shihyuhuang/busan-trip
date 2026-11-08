@@ -159,10 +159,11 @@
                     <i class="fa-solid fa-print"></i>
                     <span class="hidden sm:inline">列印 / 存為 PDF</span>
                 </button>
-                <button onclick="toggleBucketList()" class="bg-rose-500 hover:bg-rose-600 text-white px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition shadow-sm flex items-center gap-1.5">
-                    <i class="fa-solid fa-square-check"></i>
+                <!-- 🌟 打卡清單按鈕 (深色文字 + 柔粉底色高對比好讀版) -->
+                <button onclick="toggleBucketList()" class="bg-rose-100 hover:bg-rose-200 text-warmDark border border-rose-200 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition shadow-xs flex items-center gap-1.5">
+                    <i class="fa-solid fa-square-check text-rose-500"></i>
                     <span>打卡清單</span>
-                    <span id="bucket-count" class="bg-white/30 text-white text-xs px-1.5 py-0.5 rounded-full font-mono">0/10</span>
+                    <span id="bucket-count" class="bg-white text-warmDark text-xs px-2 py-0.5 rounded-full font-mono font-bold border border-rose-200/60 shadow-2xs">0/10</span>
                 </button>
             </div>
         </div>
@@ -218,7 +219,7 @@
         // 預設 Fallback 圖片
         const DEFAULT_FALLBACK_IMG = "https://bobbytravel.tw/wp-content/uploads/2026/06/20260810225703_0_33c1cb.webp";
 
-        // 行程資料 (含候選餐廳結構、I would say... 心得與 Reels、CatchTable 連結)
+        // 行程資料 (含候選餐廳結構、I would say... 心得與 Reels、CatchTable 連結、指定景點實景美圖)
         const itineraryData = {
             1: {
                 title: "Day 1 ‧ 抵達釜山 ➔ 南浦洞時尚街 ➔ BIFF 堅果糖餅 ➔ 富平小吃 & 樂天夜景",
@@ -249,7 +250,6 @@
                         icon: "fa-utensils",
                         tag: "美食首選",
                         badge: "姐妹票選",
-                        // 🌟 候選卡片：圖片下方即為文字敘述與 "I would say..." 按鈕
                         candidates: [
                             {
                                 id: "c1-anmok",
@@ -319,8 +319,8 @@
                         icon: "fa-bag-shopping",
                         tag: "時尚/購物",
                         badge: "釜山明洞",
-                        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxRfSTsNHx8lZN_M2qk_FCv3I-dgKXdqcWdnPiJu474J3Y_pO-v0sTtp4&s=10",
-                        imgLabel: "光復路文化時尚街熱鬧商圈實景",
+                        img: "https://lizzzstyle.tw/wp-content/uploads/2025/08/39_20250917_202253_0000.webp",
+                        imgLabel: "光復路文化時尚街漫步",
                         maps: [
                             {
                                 name: "光復路文化時尚街",
@@ -379,8 +379,8 @@
                         icon: "fa-bowl-rice",
                         tag: "夜市小吃",
                         badge: "白種元推薦",
-                        img: "https://damei17.com/wp-content/uploads/2023/02/%E8%80%81%E8%99%8E%E5%86%B0%E6%B7%87%E6%B7%8B%E5%A4%A7%E7%A6%8F-%E1%84%92%E1%85%A9%E1%84%85%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%A6%E1%86%AF%E1%84%85%E1%85%A1%E1%84%84%E1%85%A5%E1%86%A8-21.jpeg",
-                        imgLabel: "富平罐頭市場道地香濃小吃與辣炒年糕",
+                        img: "https://img.guliufish.com/2023/09/20230918100328_100.jpg",
+                        imgLabel: "富平罐頭市場熱鬧小吃攤位",
                         maps: [
                             {
                                 name: "富平罐頭市場",
@@ -908,7 +908,7 @@
                     };
                     const categoryBadgeClass = categoryColors[item.category] || "bg-gray-500 text-white";
 
-                    // 🌟 若為多候選餐廳 (candidates)，將圖片、文字、I would say 與地圖結合成卡片排版
+                    // 候選卡片渲染 (圖片下方直接配文字敘述與 I would say 按鈕)
                     let candidatesHtml = '';
                     if (item.candidates && item.candidates.length > 0) {
                         const gridColClass = item.candidates.length === 2 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3';
@@ -917,7 +917,6 @@
                                 ${item.candidates.map(cand => `
                                     <div class="bg-white/95 rounded-2xl border border-rose-100 shadow-xs overflow-hidden flex flex-col justify-between hover:shadow-md transition duration-300">
                                         <div>
-                                            <!-- 候選圖片 (頂部) -->
                                             <div class="relative w-full h-36 overflow-hidden bg-rose-50/40">
                                                 <img src="${cand.img}" 
                                                      alt="${cand.imgLabel || cand.name}" 
@@ -931,12 +930,10 @@
                                                 ${cand.badge ? `<div class="absolute top-2 left-2 bg-rose-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-lg shadow">${cand.badge}</div>` : ''}
                                             </div>
 
-                                            <!-- 候選文字描述 (圖片正下方) -->
                                             <div class="p-3.5">
                                                 <h4 class="font-bold text-warmDark text-xs sm:text-sm mb-1">${cand.name}</h4>
                                                 <p class="text-xs text-gray-600 leading-relaxed">${cand.desc}</p>
 
-                                                <!-- 🌟 "I would say..." 按鈕與抽屜 -->
                                                 ${cand.iWouldSay ? `
                                                     <div class="mt-2.5">
                                                         <button onclick="toggleSay('${cand.id}')" class="inline-flex items-center gap-1.5 text-[11px] font-bold text-rose-500 bg-rose-50 hover:bg-rose-100 border border-rose-200/80 px-2.5 py-1 rounded-full transition shadow-xs">
@@ -945,7 +942,6 @@
                                                             <i class="fa-solid fa-chevron-down text-[9px] transition-transform duration-200" id="icon-${cand.id}"></i>
                                                         </button>
 
-                                                        <!-- 展開的心得描述與 Reels -->
                                                         <div id="${cand.id}" class="hidden mt-2 p-2.5 bg-amber-50/70 border border-amber-200/60 rounded-xl text-[11px] text-gray-700 space-y-1.5">
                                                             <p class="leading-relaxed">
                                                                 <span class="font-bold text-amber-900">💬 心得：</span>${cand.iWouldSay.review}
@@ -964,7 +960,6 @@
                                             </div>
                                         </div>
 
-                                        <!-- 該候選專屬導航與 CatchTable 連結 -->
                                         ${cand.maps && cand.maps.length > 0 ? `
                                             <div class="p-3 pt-0 border-t border-rose-50 flex items-center justify-end gap-1.5 flex-wrap">
                                                 ${cand.maps.map(m => `
@@ -992,4 +987,188 @@
                         mapsHtml = `
                             <div class="mt-4 pt-3 border-t border-rose-100/70 flex flex-wrap items-center gap-2">
                                 <span class="text-[11px] font-bold text-gray-400 flex items-center mr-1">
-                                    <i class="fa-solid fa-map-location-dot t
+                                    <i class="fa-solid fa-map-location-dot text-rose-400 mr-1.5 text-xs"></i>實用連結：
+                                </span>
+                                ${item.maps.map(m => `
+                                    <div class="inline-flex items-center bg-white/90 border border-rose-200/80 rounded-xl px-2.5 py-1 text-xs shadow-sm">
+                                        <span class="font-semibold text-warmDark mr-2 text-[11px]">${m.name}</span>
+                                        <div class="flex items-center gap-1.5 border-l border-gray-200 pl-2">
+                                            <a href="${m.naver}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-[#03C75A] hover:opacity-80 transition" title="在 Naver Map 查看店家實拍與路線">
+                                                <span class="bg-[#03C75A] text-white text-[9px] font-black px-1 rounded">N</span>
+                                                <span class="text-[11px]">Naver</span>
+                                            </a>
+                                            <span class="text-gray-300">|</span>
+                                            <a href="${m.google}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-blue-500 hover:opacity-80 transition" title="使用 Google Maps 開啟">
+                                                <i class="fa-brands fa-google text-xs text-blue-500"></i>
+                                                <span class="text-[11px]">Google</span>
+                                            </a>
+                                            ${m.catchtable ? `
+                                                <span class="text-gray-300">|</span>
+                                                <a href="${m.catchtable}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-[#FF385C] hover:opacity-80 transition" title="在 CatchTable 查看訂位/線上候位">
+                                                    <span class="bg-[#FF385C] text-white text-[9px] font-black px-1 rounded">C</span>
+                                                    <span class="text-[11px]">CatchTable</span>
+                                                </a>
+                                            ` : ''}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                    }
+
+                    // 實景縮圖區塊 (非候選結構之一般行程)
+                    let imageHtml = '';
+                    if (!item.candidates) {
+                        if (item.images && item.images.length > 0) {
+                            imageHtml = `
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3.5 items-start">
+                                    ${item.images.map((imgItem, idx) => `
+                                        <div class="relative w-full rounded-xl overflow-hidden group shadow-sm bg-rose-50/30 border border-rose-100">
+                                            <img src="${imgItem.url}"
+                                                 alt="${imgItem.label || item.title}"
+                                                 class="w-full h-auto object-contain block transition-transform duration-300 group-hover:scale-102"
+                                                 loading="lazy"
+                                                 onerror="this.onerror=null; this.src='${DEFAULT_FALLBACK_IMG}'">
+                                            <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm text-white text-[10px] px-2 py-0.5 rounded-lg flex items-center gap-1 shadow">
+                                                <i class="fa-solid fa-camera text-rose-300"></i>
+                                                <span>${imgItem.label || item.imgLabel || `${item.title} 照 ${idx + 1}`}</span>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            `;
+                        } else if (item.img) {
+                            imageHtml = `
+                                <div class="relative w-full h-44 sm:h-56 rounded-xl overflow-hidden mb-3.5 group shadow-inner bg-rose-50/50">
+                                    <img src="${item.img}"
+                                         alt="${item.title}"
+                                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                         loading="lazy"
+                                         onerror="this.onerror=null; this.src='${DEFAULT_FALLBACK_IMG}'">
+                                    <div class="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-sm text-white text-[10px] sm:text-xs px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow">
+                                        <i class="fa-solid fa-camera text-rose-300"></i>
+                                        <span>${item.imgLabel || item.title}</span>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    }
+
+                    html += `
+                        <div class="glass-card rounded-2xl p-5 custom-shadow transition duration-300 hover:translate-y-[-2px] relative overflow-hidden">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="${categoryBadgeClass} w-9 h-9 rounded-xl flex items-center justify-center text-sm shadow-sm flex-shrink-0">
+                                        <i class="fa-solid ${item.icon}"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs font-extrabold text-rose-400 tracking-wider">${item.time}</span>
+                                        <h3 class="text-base font-bold text-warmDark">${item.title}</h3>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 self-start sm:self-auto">
+                                    ${item.badge ? `<span class="bg-amber-100 text-amber-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full">${item.badge}</span>` : ''}
+                                    <span class="bg-gray-100 text-gray-600 text-[11px] font-medium px-2 py-0.5 rounded-md">${item.tag}</span>
+                                </div>
+                            </div>
+
+                            ${imageHtml}
+
+                            <p class="text-sm sm:text-base text-gray-700 leading-relaxed mb-3">
+                                ${item.desc}
+                            </p>
+
+                            ${candidatesHtml}
+
+                            ${mapsHtml}
+                        </div>
+                    `;
+                });
+            }
+            wrapper.innerHTML = html;
+        }
+
+        // Switch Day Tabs
+        function switchDay(day) {
+            currentDay = day;
+            document.querySelectorAll('.day-tab').forEach((tab, i) => {
+                if (i + 1 === day) {
+                    tab.classList.remove('opacity-70', 'bg-white');
+                    tab.classList.add('bg-warmDark', 'text-white', 'shadow-md');
+                    tab.querySelector('.text-rose-400').classList.replace('text-rose-400', 'text-rose-100');
+                    tab.querySelector('.text-warmDark').classList.replace('text-warmDark', 'text-white');
+                    tab.querySelector('.text-gray-400').classList.replace('text-gray-400', 'text-rose-100');
+                } else {
+                    tab.classList.add('opacity-70', 'bg-white');
+                    tab.classList.remove('bg-warmDark', 'text-white', 'shadow-md');
+                    const r = tab.querySelector('.text-rose-100');
+                    if (r) r.classList.replace('text-rose-100', 'text-rose-400');
+                    const w = tab.querySelector('.text-white');
+                    if (w) w.classList.replace('text-white', 'text-warmDark');
+                    const g = tab.querySelector('.text-rose-100');
+                    if (g) g.classList.replace('text-rose-100', 'text-gray-400');
+                }
+            });
+            renderTimeline();
+        }
+
+        // Category Filter
+        function filterCategory(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('bg-warmDark', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-600');
+            });
+            const activeBtn = document.getElementById(`btn-${cat}`);
+            if(activeBtn) {
+                activeBtn.classList.add('bg-warmDark', 'text-white');
+                activeBtn.classList.remove('bg-white', 'text-gray-600');
+            }
+            renderTimeline();
+        }
+
+        // Bucket List Panel Toggle
+        function toggleBucketList() {
+            const panel = document.getElementById('bucket-panel');
+            panel.classList.toggle('hidden');
+        }
+
+        // Render Checklist
+        function renderChecklist() {
+            const container = document.getElementById('checklist-container');
+            let html = '';
+            bucketListItems.forEach(item => {
+                html += `
+                    <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/70 hover:bg-white border border-gray-100 cursor-pointer transition">
+                        <input type="checkbox" id="${item.id}" onchange="updateBucketCount()" class="w-4 h-4 rounded text-rose-500 focus:ring-rose-400 border-gray-300">
+                        <span id="label-${item.id}" class="text-xs sm:text-sm font-medium text-gray-700">${item.text}</span>
+                    </label>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Update Checklist Count
+        function updateBucketCount() {
+            let count = 0;
+            bucketListItems.forEach(item => {
+                const cb = document.getElementById(item.id);
+                const label = document.getElementById(`label-${item.id}`);
+                if (cb && cb.checked) {
+                    count++;
+                    label.classList.add('checked-item');
+                } else if (label) {
+                    label.classList.remove('checked-item');
+                }
+            });
+            document.getElementById('bucket-count').innerText = `${count}/${bucketListItems.length}`;
+        }
+
+        // Init
+        window.onload = function() {
+            renderChecklist();
+            switchDay(1);
+        };
+    </script>
+</body>
+</html>
