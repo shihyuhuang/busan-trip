@@ -101,8 +101,8 @@
 
     <!-- Main Container -->
     <main class="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-20">
-        <!-- Quick Stats & Filter Bar -->
-        <!-- 🏨 住宿飯店專屬小卡 (時間/地址置中、小尺寸無文字贅字、Naver 綠底按鈕樣式) -->
+
+        <!-- 🏨 住宿飯店專屬小卡 (時間/地址置中、小尺寸無贅字、Naver 綠底按鈕樣式) -->
         <div class="glass-card rounded-2xl p-4 sm:p-5 mb-6 custom-shadow border border-rose-200/80 bg-gradient-to-r from-rose-50/80 via-pink-50/60 to-amber-50/60 flex flex-col sm:flex-row items-center justify-between gap-3.5 text-center sm:text-left">
             <div class="w-full sm:w-auto">
                 <!-- 飯店名稱與住宿標籤 (置中) -->
@@ -140,7 +140,8 @@
                 </a>
             </div>
         </div>
-        
+
+        <!-- Quick Stats & Filter Bar -->
         <div class="glass-card rounded-2xl p-4 mb-6 custom-shadow flex flex-wrap items-center justify-between gap-3">
             <!-- Filter buttons -->
             <div class="flex items-center gap-1 sm:gap-2 overflow-x-auto hide-scrollbar w-full sm:w-auto">
@@ -164,10 +165,10 @@
                     <i class="fa-solid fa-print"></i>
                     <span class="hidden sm:inline">列印 / 存為 PDF</span>
                 </button>
-                <button onclick="toggleBucketList()" class="bg-rose-500 hover:bg-rose-600 text-gray-600 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition shadow-sm flex items-center gap-1.5">
+                <button onclick="toggleBucketList()" class="bg-rose-500 hover:bg-rose-600 text-white px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition shadow-sm flex items-center gap-1.5">
                     <i class="fa-solid fa-square-check"></i>
                     <span>打卡清單</span>
-                    <span id="bucket-count" class="bg-white/30 text-gray-600 text-xs px-1.5 py-0.5 rounded-full font-mono">0/9</span>
+                    <span id="bucket-count" class="bg-white/30 text-white text-xs px-1.5 py-0.5 rounded-full font-mono">0/9</span>
                 </button>
             </div>
         </div>
@@ -188,27 +189,27 @@
             <button onclick="switchDay(1)" id="tab-day1" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-white shadow-sm border border-rose-100 transition duration-200">
                 <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">DAY 1</div>
                 <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/07 (一)</div>
-                <div class="text-[11px] text-gray-400 mt-0.5">南浦洞 & 夜景</div>
+                <div class="text-[11px] text-gray-400 mt-0.5">南浦洞 &amp; 夜景</div>
             </button>
             <button onclick="switchDay(2)" id="tab-day2" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-white shadow-sm border border-rose-100 transition duration-200 opacity-70">
                 <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">DAY 2</div>
                 <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/08 (二)</div>
-                <div class="text-[11px] text-gray-400 mt-0.5">膠囊列車 & 甘川</div>
+                <div class="text-[11px] text-gray-400 mt-0.5">膠囊列車 &amp; 甘川</div>
             </button>
             <button onclick="switchDay(3)" id="tab-day3" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-white shadow-sm border border-rose-100 transition duration-200 opacity-70">
                 <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">DAY 3</div>
                 <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/09 (三)</div>
-                <div class="text-[11px] text-gray-400 mt-0.5">Spa Land & 韓牛</div>
+                <div class="text-[11px] text-gray-400 mt-0.5">Spa Land &amp; 韓牛</div>
             </button>
             <button onclick="switchDay(4)" id="tab-day4" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-white shadow-sm border border-rose-100 transition duration-200 opacity-70">
                 <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">DAY 4</div>
                 <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/10 (四)</div>
-                <div class="text-[11px] text-gray-400 mt-0.5">西面逛街 & 拍貼</div>
+                <div class="text-[11px] text-gray-400 mt-0.5">西面逛街 &amp; 拍貼</div>
             </button>
             <button onclick="switchDay(5)" id="tab-day5" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-white shadow-sm border border-rose-100 transition duration-200 opacity-70">
                 <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">DAY 5</div>
                 <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/11 (五)</div>
-                <div class="text-[11px] text-gray-400 mt-0.5">早午餐 & 返台</div>
+                <div class="text-[11px] text-gray-400 mt-0.5">早午餐 &amp; 返台</div>
             </button>
         </div>
 
@@ -227,7 +228,7 @@
         // 預設 Fallback 圖片 (若網路不穩自動使用)
         const DEFAULT_FALLBACK_IMG = "https://bobbytravel.tw/wp-content/uploads/2026/06/20260810225703_0_33c1cb.webp";
 
-        // 行程資料 (已移除機場照片，全數更新為真實景點與特色美食代表圖)
+        // 行程資料 (已全面升級加入 CatchTable 訂位/候位連結)
         const itineraryData = {
             1: {
                 title: "Day 1 ‧ 抵達釜山 ➔ 南浦洞經典漫步 ➔ 韓味午餐 & 樂天夜景",
@@ -237,11 +238,11 @@
                     {
                         time: "10:50",
                         title: "抵達金海機場 (PUS) ➔ 前往廣安里飯店",
-                        desc: "辦理入境、領取行李，搭乘 Kakao T 計程車或地鐵前往水營區廣安里飯店 <b>Wonaenu Mareu</b> 民宿寄放行李。",
+                        desc: "辦理入境、領取行李，搭乘 Kakao T 計程車或地鐵前往水營區廣安里飯店 <b>Wonaenu Mareu</b> 寄放行李。",
                         category: "spot",
                         icon: "fa-plane-arrival",
                         tag: "交通",
-                        img: null, // 機場不用照片
+                        img: null,
                         maps: [
                             {
                                 name: "金海國際機場",
@@ -253,30 +254,31 @@
                     {
                         time: "13:30",
                         title: "午餐 (首選道地韓味)",
-                        desc: "<b>候選 1：Anmok 釜山站店 (안목)</b> - 米其林推薦溫潤優雅的豬肉湯飯。<br><b>候選 2：扎嘎其市場 2F</b> - 現切生魚片、烤魚或辣海鮮湯。<br><b>候選 3：味贊王鹽烤肉</b> - 厚切爆汁豬五花。",
+                        desc: "<b>候選 1：Anmok 釜山站店 (안목)</b> - 米其林推薦溫潤優雅的豬肉湯飯。<br><b>候選 2：扎嘎其市場 2F</b> - 現切生魚片、烤魚或辣海鮮湯。<br><b>候選 3：味贊王鹽烤肉 富平店</b> - 厚切爆汁豬五花（全程專人桌邊代烤）。",
                         category: "food",
                         icon: "fa-utensils",
                         tag: "美食首選",
                         badge: "米其林推薦 / 海鮮",
                         images: [
-                        {
-                            url: "https://damei17.com/wp-content/uploads/2025/05/anmok-.jpg",
-                            label: "釜山名物熱騰騰豬肉湯飯 (돼지국밥)"
-                        },
-                        {
-                            url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkpyS-ZZz-NuPC4LddOe63N2DzJ5wn7SFXepg77qJX_iwSUufG5wQ6paw&s=10",
-                            label: "札嘎其市場"
-                        },
-                        {
-                            url: "https://img.bigfang.tw/2024/09/1727520968-4efdd2f969559e8b1c92e99f32ded48e.jpg",
-                            label: "味贊王鹽烤肉富平店"
-                        }
+                            {
+                                url: "https://damei17.com/wp-content/uploads/2025/05/anmok-.jpg",
+                                label: "釜山名物熱騰騰豬肉湯飯 (돼지국밥)"
+                            },
+                            {
+                                url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkpyS-ZZz-NuPC4LddOe63N2DzJ5wn7SFXepg77qJX_iwSUufG5wQ6paw&s=10",
+                                label: "札嘎其市場"
+                            },
+                            {
+                                url: "https://img.bigfang.tw/2024/09/1727520968-4efdd2f969559e8b1c92e99f32ded48e.jpg",
+                                label: "味贊王鹽烤肉富平店"
+                            }
                         ],
                         maps: [
                             {
                                 name: "Anmok 釜山站店",
                                 naver: "https://map.naver.com/p/search/%EC%95%88%EB%AA%A9%20%EB%B6%80%EC%82%B0",
-                                google: "https://www.google.com/maps/search/?api=1&query=Anmok+Busan"
+                                google: "https://www.google.com/maps/search/?api=1&query=Anmok+Busan",
+                                catchtable: "https://www.catchtable.net/shop/anmok_busanstation"
                             },
                             {
                                 name: "扎嘎其市場",
@@ -285,7 +287,7 @@
                             },
                             {
                                 name: "味贊王鹽烤肉 富平店",
-                                naver: "https://map.naver.com/p/search/%EB%A7%9B%EC%B0%AC%EB%93%A4%EC%99%95%EC%86%8C%EA%B8%88%EA%85%B8%EC%9D%B4%20%EB%B6%80%ED%8F%89%EC%A0%90",
+                                naver: "https://map.naver.com/p/search/%EB%A7%9B%EC%B0%AC%EB%93%A4%EC%99%95%EC%86%8C%EA%B8%88%EA%85%B8%EC%9D%B4%20%EB%82%A8%ED%8F%AC%EC%A0%90",
                                 google: "https://www.google.com/maps/search/?api=1&query=Matchandeul+Wang+Sogeum+Gui+Bupyeong"
                             }
                         ]
@@ -315,7 +317,7 @@
                     {
                         time: "16:30",
                         title: "下午茶：李在模披薩 本店 (Ijaemo Pizza)",
-                        desc: "釜山爆款起司披薩！使用韓國國產濃醇起司，建議外帶小份披薩作為下午茶分享，省去正餐時間的大排長龍。",
+                        desc: "釜山爆款起司披薩！使用韓國國產濃醇起司，建議可利用 CatchTable 關注候位情況，外帶小份披薩作為下午茶分享。",
                         category: "food",
                         icon: "fa-pizza-slice",
                         tag: "下午茶候選",
@@ -326,7 +328,8 @@
                             {
                                 name: "李在模披薩 本店",
                                 naver: "https://map.naver.com/p/search/%EC%9D%B4%EC%9E%AC%EB%AA%A8%ED%94%BC%EC%9E%90%20%EB%B3%B8%EC%A0%90",
-                                google: "https://www.google.com/maps/search/?api=1&query=Lee+Jaemo+Pizza+Busan"
+                                google: "https://www.google.com/maps/search/?api=1&query=Lee+Jaemo+Pizza+Busan",
+                                catchtable: "https://www.catchtable.net/shop/leejaemo"
                             }
                         ]
                     },
@@ -378,7 +381,7 @@
                         category: "spot",
                         icon: "fa-taxi",
                         tag: "交通",
-                        img: null, // 純交通移動不放照片
+                        img: null,
                         maps: [
                             {
                                 name: "藍線公園 尾浦站",
@@ -419,12 +422,14 @@
                             {
                                 name: "嚴湧帛豬肉湯飯 海雲臺店",
                                 naver: "https://map.naver.com/p/search/%EC%97%84%EC%9A%A9%EB%B0%B1%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5%20%ED%95%B4%EC%9A%B4%EB%8C%80%EC%A0%90",
-                                google: "https://www.google.com/maps/search/?api=1&query=Eomyongbaek+Pork+Soup+Haeundae"
+                                google: "https://www.google.com/maps/search/?api=1&query=Eomyongbaek+Pork+Soup+Haeundae",
+                                catchtable: "https://www.catchtable.net/shop/umyongbaek_haewoondae"
                             },
                             {
                                 name: "巨大牛肉湯飯",
                                 naver: "https://map.naver.com/p/search/%EA%B1%B0%EB%8C%80%EA%B3%B0%ED%83%95",
-                                google: "https://www.google.com/maps/search/?api=1&query=Geodae+Gomtang+Haeundae"
+                                google: "https://www.google.com/maps/search/?api=1&query=Geodae+Gomtang+Haeundae",
+                                catchtable: "https://www.catchtable.net/shop/geodaegomtang"
                             }
                         ]
                     },
@@ -548,12 +553,14 @@
                         icon: "fa-bag-shopping",
                         tag: "購物血拼",
                         images: [
-                        {
-                            url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxRfSTsNHx8lZN_M2qk_FCv3I-dgKXdqcWdnPiJu474J3Y_pO-v0sTtp4&s=10",
-                        },
-                        {
-                            url: "https://kimiyo.tw/wp-content/uploads/2025/07/20260919174256_0_85c723.jpg",
-                        }
+                            {
+                                url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxRfSTsNHx8lZN_M2qk_FCv3I-dgKXdqcWdnPiJu474J3Y_pO-v0sTtp4&s=10",
+                                label: "西面地下街商圈"
+                            },
+                            {
+                                url: "https://kimiyo.tw/wp-content/uploads/2025/07/20260919174256_0_85c723.jpg",
+                                label: "田浦風格選品店"
+                            }
                         ],
                         imgLabel: "田浦風格設計選品店與潮流服飾",
                         maps: [
@@ -583,7 +590,8 @@
                             {
                                 name: "Cor Pasta Bar",
                                 naver: "https://map.naver.com/p/search/%EC%BD%94%EB%A5%B4%20%ED%8C%8C%EC%8A%A4%ED%83%80%EB%B0%94",
-                                google: "https://www.google.com/maps/search/?api=1&query=Cor+Pasta+Bar+Jeonpo+Busan"
+                                google: "https://www.google.com/maps/search/?api=1&query=Cor+Pasta+Bar+Jeonpo+Busan",
+                                catchtable: "https://www.catchtable.net/zh-TW/shop/cor_pasta_bar"
                             },
                             {
                                 name: "老宅邸燒肉",
@@ -593,7 +601,8 @@
                             {
                                 name: "손내향미 (Sonnae Hyangmi)",
                                 naver: "https://map.naver.com/p/search/%EC%86%90%EB%82%B4%ED%96%A5%EB%AF%B8",
-                                google: "https://www.google.com/maps/search/?api=1&query=Sonnae+Hyangmi+Busan"
+                                google: "https://www.google.com/maps/search/?api=1&query=Sonnae+Hyangmi+Busan",
+                                catchtable: "https://app.catchtable.co.kr/ct/shop/son.riceee"
                             }
                         ]
                     },
@@ -667,7 +676,7 @@
                         category: "spot",
                         icon: "fa-plane-departure",
                         tag: "機場搭機",
-                        img: null, // 機場不用照片
+                        img: null,
                         maps: [
                             {
                                 name: "金海國際機場 (國際線)",
@@ -732,13 +741,13 @@
                     };
                     const categoryBadgeClass = categoryColors[item.category] || "bg-gray-500 text-white";
 
-                    // 導航連結按鈕
+                    // 🌟 導航與 CatchTable 連結按鈕 (支援 Naver、Google 與 CatchTable)
                     let mapsHtml = '';
                     if (item.maps && item.maps.length > 0) {
                         mapsHtml = `
                             <div class="mt-4 pt-3 border-t border-rose-100/70 flex flex-wrap items-center gap-2">
                                 <span class="text-[11px] font-bold text-gray-400 flex items-center mr-1">
-                                    <i class="fa-solid fa-map-location-dot text-rose-400 mr-1.5 text-xs"></i>導航連結：
+                                    <i class="fa-solid fa-map-location-dot text-rose-400 mr-1.5 text-xs"></i>實用連結：
                                 </span>
                                 ${item.maps.map(m => `
                                     <div class="inline-flex items-center bg-white/90 border border-rose-200/80 rounded-xl px-2.5 py-1 text-xs shadow-sm">
@@ -753,6 +762,13 @@
                                                 <i class="fa-brands fa-google text-xs text-blue-500"></i>
                                                 <span class="text-[11px]">Google</span>
                                             </a>
+                                            ${m.catchtable ? `
+                                                <span class="text-gray-300">|</span>
+                                                <a href="${m.catchtable}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-[#FF385C] hover:opacity-80 transition" title="在 CatchTable 查看訂位/線上候位">
+                                                    <span class="bg-[#FF385C] text-white text-[9px] font-black px-1 rounded">C</span>
+                                                    <span class="text-[11px]">CatchTable</span>
+                                                </a>
+                                            ` : ''}
                                         </div>
                                     </div>
                                 `).join('')}
@@ -763,12 +779,10 @@
                     // 實景縮圖區塊 (同時支援 images 多圖雙欄排版與單圖 img)
                     let imageHtml = '';
                     if (item.images && item.images.length > 0) {
-                        // 🌟 專屬於「西面地下街 & 田浦選品店」：高度自動隨圖片撐開、完整顯示不裁切
                         imageHtml = `
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3.5 items-start">
                                 ${item.images.map((imgItem, idx) => `
                                     <div class="relative w-full rounded-xl overflow-hidden group shadow-sm bg-rose-50/30 border border-rose-100">
-                                        <!-- 使用 h-auto 與 object-contain 確保整張圖片 100% 完整呈現 -->
                                         <img src="${imgItem.url}"
                                              alt="${imgItem.label || item.title}"
                                              class="w-full h-auto object-contain block transition-transform duration-300 group-hover:scale-102"
@@ -783,7 +797,6 @@
                             </div>
                         `;
                     } else if (item.img) {
-                        // 🔒 其他所有行程：完全維持原本設定「固定高度 (h-44 sm:h-56) + 填滿裁切 (object-cover)」
                         imageHtml = `
                             <div class="relative w-full h-44 sm:h-56 rounded-xl overflow-hidden mb-3.5 group shadow-inner bg-rose-50/50">
                                 <img src="${item.img}"
@@ -843,7 +856,7 @@
                     tab.querySelector('.text-gray-400').classList.replace('text-gray-400', 'text-rose-100');
                 } else {
                     tab.classList.add('opacity-70', 'bg-white');
-                    tab.classList.remove('bg-rose-500', 'text-white', 'shadow-md');
+                    tab.classList.remove('bg-warmDark', 'text-white', 'shadow-md');
                     const r = tab.querySelector('.text-rose-100');
                     if (r) r.classList.replace('text-rose-100', 'text-rose-400');
                     const w = tab.querySelector('.text-white');
