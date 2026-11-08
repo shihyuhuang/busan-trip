@@ -94,7 +94,6 @@
             </div>
         </div>
 
-        <!-- Decorative background shapes -->
         <div class="absolute -top-12 -left-12 w-48 h-48 bg-pink-300/20 rounded-full blur-2xl pointer-events-none"></div>
         <div class="absolute top-1/2 -right-12 w-64 h-64 bg-amber-200/30 rounded-full blur-3xl pointer-events-none"></div>
     </header>
@@ -102,16 +101,14 @@
     <!-- Main Container -->
     <main class="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-20">
 
-        <!-- 🏨 住宿飯店專屬小卡 (時間/地址置中、小尺寸無贅字、Naver 綠底按鈕樣式) -->
+        <!-- 🏨 住宿飯店專屬小卡 (時間/地址置中、小尺寸無文字贅字、Naver 綠底按鈕樣式) -->
         <div class="glass-card rounded-2xl p-4 sm:p-5 mb-6 custom-shadow border border-rose-200/80 bg-gradient-to-r from-rose-50/80 via-pink-50/60 to-amber-50/60 flex flex-col sm:flex-row items-center justify-between gap-3.5 text-center sm:text-left">
             <div class="w-full sm:w-auto">
-                <!-- 飯店名稱與住宿標籤 (置中) -->
                 <div class="flex items-center justify-center sm:justify-start gap-2 flex-wrap">
                     <span class="text-[11px] font-bold text-rose-500 bg-white px-2 py-0.5 rounded-full border border-rose-200 shadow-xs">本次住宿</span>
                     <h3 class="text-base sm:text-lg font-bold text-warmDark">Wonaenu Mareu (廣安里海景)</h3>
                 </div>
 
-                <!-- 🌟 入住與退房時間標記 (置中) -->
                 <div class="flex items-center justify-center sm:justify-start gap-2 mt-2 flex-wrap text-xs">
                     <span class="inline-flex items-center gap-1 bg-amber-100 text-amber-800 font-semibold px-2 py-0.5 rounded-md text-[11px]">
                         <i class="fa-solid fa-key text-[10px]"></i> 入住 15:00 後
@@ -121,14 +118,13 @@
                     </span>
                 </div>
 
-                <!-- 🌟 韓文地址 (搭計程車直接給司機看 - 置中) -->
                 <p class="text-xs text-gray-600 mt-2 flex items-center justify-center sm:justify-start gap-1.5" title="搭計程車直接給司機看此韓文">
                     <i class="fa-solid fa-location-dot text-rose-400 text-xs"></i>
                     <span class="font-medium">부산 수영구 민락수변로 125 (민락동 110-87) 골든뷰</span>
                 </p>
             </div>
 
-            <!-- 🌟 精緻小巧雙地圖按鈕 -->
+            <!-- 地圖按鈕 (小尺寸、Naver 綠底) -->
             <div class="flex items-center justify-center sm:justify-end gap-2 flex-shrink-0">
                 <a href="https://naver.me/FvTO34vd" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-[#03C75A] text-white text-[11px] font-bold px-2.5 py-1 rounded-xl hover:opacity-90 transition shadow-xs" title="使用 Naver 地圖開啟">
                     <span class="bg-white text-[#03C75A] text-[9px] font-black px-1 rounded">N</span>
@@ -166,7 +162,7 @@
                 <button onclick="toggleBucketList()" class="bg-rose-500 hover:bg-rose-600 text-white px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition shadow-sm flex items-center gap-1.5">
                     <i class="fa-solid fa-square-check"></i>
                     <span>打卡清單</span>
-                    <span id="bucket-count" class="bg-white/30 text-white text-xs px-1.5 py-0.5 rounded-full font-mono">0/10</span>
+                    <span id="bucket-count" class="bg-white/30 text-warmDark text-xs px-1.5 py-0.5 rounded-full font-mono">0/10</span>
                 </button>
             </div>
         </div>
@@ -177,9 +173,7 @@
                 <span><i class="fa-solid fa-star text-amber-400 mr-2"></i>釜山必訪熱門清單 (Bucket List)</span>
                 <span class="text-xs text-gray-400 font-normal">點擊完成打卡</span>
             </h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="checklist-container">
-                <!-- Checklist items injected via JS -->
-            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="checklist-container"></div>
         </div>
 
         <!-- Days Navigation Tabs -->
@@ -212,9 +206,7 @@
         </div>
 
         <!-- Timeline Content Section -->
-        <div id="timeline-wrapper" class="space-y-4">
-            <!-- Timeline items rendered dynamically -->
-        </div>
+        <div id="timeline-wrapper" class="space-y-4"></div>
     </main>
 
     <!-- Footer -->
@@ -226,7 +218,7 @@
         // 預設 Fallback 圖片
         const DEFAULT_FALLBACK_IMG = "https://bobbytravel.tw/wp-content/uploads/2026/06/20260810225703_0_33c1cb.webp";
 
-        // 行程資料 (Day 1 已將 光復路時尚街、BIFF 廣場、富平罐頭小吃 細化分流)
+        // 行程資料 (含候選餐廳結構、I would say... 心得與 Reels、CatchTable 連結)
         const itineraryData = {
             1: {
                 title: "Day 1 ‧ 抵達釜山 ➔ 南浦洞時尚街 ➔ BIFF 堅果糖餅 ➔ 富平小吃 & 樂天夜景",
@@ -251,42 +243,71 @@
                     },
                     {
                         time: "13:30",
-                        title: "午餐 (首選道地韓味)",
-                        desc: "<b>候選 1：Anmok 釜山站店 (안목)</b> - 米其林推薦溫潤優雅的豬肉湯飯。<br><b>候選 2：扎嘎其市場 2F</b> - 現切生魚片、烤魚或辣海鮮湯。<br><b>候選 3：味贊王鹽烤肉 富平店</b> - 厚切爆汁豬五花（全程專人桌邊代烤）。",
+                        title: "午餐 (首選道地韓味 - 三選一)",
+                        desc: "姐妹投票時間！三家超人氣經典韓味各有千秋，點擊下方各候選卡片看私房推薦：",
                         category: "food",
                         icon: "fa-utensils",
                         tag: "美食首選",
-                        badge: "米其林推薦 / 海鮮",
-                        images: [
+                        badge: "姐妹票選",
+                        // 🌟 候選卡片：圖片下方即為文字敘述與 "I would say..." 按鈕
+                        candidates: [
                             {
-                                url: "https://damei17.com/wp-content/uploads/2025/05/anmok-.jpg",
-                                label: "釜山名物熱騰騰豬肉湯飯 (돼지국밥)"
+                                id: "c1-anmok",
+                                name: "候選 1：Anmok 釜山站店 (안목)",
+                                badge: "米其林推薦",
+                                desc: "溫潤優雅的頂級豬肉湯飯，湯頭清甜無豬腥味，小菜精緻美味。",
+                                img: "https://damei17.com/wp-content/uploads/2025/05/anmok-.jpg",
+                                imgLabel: "米其林清爽湯飯",
+                                iWouldSay: {
+                                    review: "完全顛覆傳統豬肉湯飯油膩的印象！湯底像日式清湯拉麵般細緻溫潤，如果害怕重豬腥味的人，這家絕對是第一首選，店面也非常文青漂亮。",
+                                    reels: "https://www.instagram.com/explore/tags/%EB%B6%80%EC%82%B0%EC%95%88%EB%AA%A9/"
+                                },
+                                maps: [
+                                    {
+                                        name: "Anmok 釜山站店",
+                                        naver: "https://map.naver.com/p/search/%EC%95%88%EB%AA%A9%20%EB%B6%80%EC%82%B0",
+                                        google: "https://www.google.com/maps/search/?api=1&query=Anmok+Busan",
+                                        catchtable: "https://www.catchtable.net/shop/anmok_busanstation"
+                                    }
+                                ]
                             },
                             {
-                                url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkpyS-ZZz-NuPC4LddOe63N2DzJ5wn7SFXepg77qJX_iwSUufG5wQ6paw&s=10",
-                                label: "札嘎其市場"
+                                id: "c1-jagalchi",
+                                name: "候選 2：扎嘎其市場 2F",
+                                badge: "生猛海鮮",
+                                desc: "釜山代表性魚市場，現點現切生魚片、炭火現烤海魚與熱騰騰辣海鮮湯。",
+                                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkpyS-ZZz-NuPC4LddOe63N2DzJ5wn7SFXepg77qJX_iwSUufG5wQ6paw&s=10",
+                                imgLabel: "扎嘎其現流海鮮",
+                                iWouldSay: {
+                                    review: "想體驗最生猛道地的釜山海港風情就來這裡！一樓挑選新鮮活海鮮、二樓現場現烤，必吃現烤海鰻與滿滿料的辣海鮮豆腐湯，配燒酒超對味！",
+                                    reels: "https://www.instagram.com/explore/tags/%EC%9E%90%EA%B0%88%EC%B9%98%EC%8B%9C%EC%9E%A5/"
+                                },
+                                maps: [
+                                    {
+                                        name: "扎嘎其市場",
+                                        naver: "https://map.naver.com/p/search/%EC%9E%90%EA%B0%88%EC%B9%98%EC%8B%9C%EC%9E%A5",
+                                        google: "https://www.google.com/maps/search/?api=1&query=Jagalchi+Market+Busan"
+                                    }
+                                ]
                             },
                             {
-                                url: "https://img.bigfang.tw/2024/09/1727520968-4efdd2f969559e8b1c92e99f32ded48e.jpg",
-                                label: "味贊王鹽烤肉富平店"
-                            }
-                        ],
-                        maps: [
-                            {
-                                name: "Anmok 釜山站店",
-                                naver: "https://map.naver.com/p/search/%EC%95%88%EB%AA%A9%20%EB%B6%80%EC%82%B0",
-                                google: "https://www.google.com/maps/search/?api=1&query=Anmok+Busan",
-                                catchtable: "https://www.catchtable.net/shop/anmok_busanstation"
-                            },
-                            {
-                                name: "扎嘎其市場",
-                                naver: "https://map.naver.com/p/search/%EC%9E%90%EA%B0%88%EC%B9%98%EC%8B%9C%EC%9E%A5",
-                                google: "https://www.google.com/maps/search/?api=1&query=Jagalchi+Market+Busan"
-                            },
-                            {
-                                name: "味贊王鹽烤肉 富平店",
-                                naver: "https://map.naver.com/p/search/%EB%A7%9B%EC%B0%AC%EB%93%A4%EC%99%95%EC%86%8C%EA%B8%88%EA%85%B8%EC%9D%B4%20%EB%82%A8%ED%8F%AC%EC%A0%90",
-                                google: "https://www.google.com/maps/search/?api=1&query=Matchandeul+Wang+Sogeum+Gui+Bupyeong"
+                                id: "c1-matchandeul",
+                                name: "候選 3：味贊王鹽烤肉 富平店",
+                                badge: "厚切爆汁五花",
+                                desc: "厚切 3.5cm 熟成豬五花，全程專業店員以測溫槍精準桌邊代烤。",
+                                img: "https://img.bigfang.tw/2024/09/1727520968-4efdd2f969559e8b1c92e99f32ded48e.jpg",
+                                imgLabel: "味贊王代烤五花肉",
+                                iWouldSay: {
+                                    review: "五花肉控的天堂！肉質烤到金黃微酥、一咬噴汁，搭配專屬醃蝦醬、泡菜與生菜包著吃完全不膩口，而且全程不用自己動手烤！",
+                                    reels: "https://www.instagram.com/explore/tags/%EB%A7%9B%EC%B0%AC%EB%93%A4%EC%99%95%EC%86%8C%EA%B8%88%EA%85%B8%EC%9D%B4/"
+                                },
+                                maps: [
+                                    {
+                                        name: "味贊王 富平店",
+                                        naver: "https://map.naver.com/p/search/%EB%A7%9B%EC%B0%AC%EB%93%A4%EC%99%95%EC%86%8C%EA%B8%88%EA%85%B8%EC%9D%B4%20%EB%82%A8%ED%8F%AC%EC%A0%90",
+                                        google: "https://www.google.com/maps/search/?api=1&query=Matchandeul+Wang+Sogeum+Gui+Bupyeong"
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -358,7 +379,7 @@
                         icon: "fa-bowl-rice",
                         tag: "夜市小吃",
                         badge: "白種元推薦",
-                        img: "https://ginatw.com/wp-content/uploads/2024/08/448086533_1019311189561571_6377503380875598112_n.jpg",
+                        img: "https://img.guliufish.com/2023/09/20230918100328_100.jpg",
                         imgLabel: "富平罐頭市場道地香濃小吃與辣炒年糕",
                         maps: [
                             {
@@ -450,26 +471,52 @@
                     },
                     {
                         time: "18:00",
-                        title: "晚餐 (海雲臺極品美味)",
-                        desc: "<b>候選 1：嚴湧帛豬肉湯飯 (Eomyongbaek)</b> - 精緻擺盤與極致清爽濃郁湯頭。<br><b>候選 2：巨大牛肉湯飯 (Geodae Gomtang)</b> - 頂級乳白牛肉湯底。",
+                        title: "晚餐 (海雲臺極品美味 - 二選一)",
+                        desc: "兩大知名排隊湯飯！清爽派與濃醇派的頂尖對決，點擊卡片看詳細分析：",
                         category: "food",
                         icon: "fa-bowl-food",
                         tag: "晚餐候選",
-                        badge: "清單美食",
-                        img: "https://damei17.com/wp-content/uploads/2024/12/omyongbaek.jpg",
-                        imgLabel: "巨大牛肉湯飯 / 濃醇乳白湯底",
-                        maps: [
+                        badge: "雙雄對決",
+                        candidates: [
                             {
-                                name: "嚴湧帛豬肉湯飯 海雲臺店",
-                                naver: "https://map.naver.com/p/search/%EC%97%84%EC%9A%A9%EB%B0%B1%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5%20%ED%95%B4%EC%9A%B4%EB%8C%80%EC%A0%90",
-                                google: "https://www.google.com/maps/search/?api=1&query=Eomyongbaek+Pork+Soup+Haeundae",
-                                catchtable: "https://www.catchtable.net/shop/umyongbaek_haewoondae"
+                                id: "c2-eomyong",
+                                name: "候選 1：嚴湧帛豬肉湯飯 海雲臺店",
+                                badge: "精緻清爽派",
+                                desc: "釜山新派豬肉湯飯代表，湯頭清澄甘甜，搭配厚切豬肉片與特色細麵。",
+                                img: "https://damei17.com/wp-content/uploads/2024/12/omyongbaek.jpg",
+                                imgLabel: "嚴湧帛清澄豬肉湯飯",
+                                iWouldSay: {
+                                    review: "店內走木質禪風裝潢非常有氣氛！他們的釜山式湯飯湯色清澈見底、甘甜爽口，完全沒有厚重的肉羶味，愛吃精緻擺盤的姐妹一定會喜歡！",
+                                    reels: "https://www.instagram.com/explore/tags/%EC%97%84%EC%9A%A9%EB%B0%B1%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5/"
+                                },
+                                maps: [
+                                    {
+                                        name: "嚴湧帛 海雲臺店",
+                                        naver: "https://map.naver.com/p/search/%EC%97%84%EC%9A%A9%EB%B0%B1%EB%8F%BC%EC%A7%80%EA%B5%AD%EB%B0%A5%20%ED%95%B4%EC%9A%B4%EB%8C%80%EC%A0%90",
+                                        google: "https://www.google.com/maps/search/?api=1&query=Eomyongbaek+Pork+Soup+Haeundae",
+                                        catchtable: "https://www.catchtable.net/shop/umyongbaek_haewoondae"
+                                    }
+                                ]
                             },
                             {
-                                name: "巨大牛肉湯飯",
-                                naver: "https://map.naver.com/p/search/%EA%B1%B0%EB%8C%80%EA%B3%B0%ED%83%95",
-                                google: "https://www.google.com/maps/search/?api=1&query=Geodae+Gomtang+Haeundae",
-                                catchtable: "https://www.catchtable.net/shop/geodaegomtang"
+                                id: "c2-geodae",
+                                name: "候選 2：巨大牛肉湯飯 (Geodae Gomtang)",
+                                badge: "極致濃白派",
+                                desc: "以韓牛牛骨耗時慢火熬煮出宛如牛奶般雪白的奢華濃醇牛肉湯底。",
+                                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Gomtang.jpg/800px-Gomtang.jpg",
+                                imgLabel: "巨大牛肉濃醇雪白湯底",
+                                iWouldSay: {
+                                    review: "濃郁系愛好者的天花板！那碗像拉麵豚骨般醇厚乳白色的韓牛清湯超級濃口，冬天喝上一碗全身暖呼呼，肉片切得超薄嫩、入口即化！",
+                                    reels: "https://www.instagram.com/explore/tags/%EA%B1%B0%EB%8C%80%EA%B3%B0%ED%83%95/"
+                                },
+                                maps: [
+                                    {
+                                        name: "巨大牛肉湯飯",
+                                        naver: "https://map.naver.com/p/search/%EA%B1%B0%EB%8C%80%EA%B3%B0%ED%83%95",
+                                        google: "https://www.google.com/maps/search/?api=1&query=Geodae+Gomtang+Haeundae",
+                                        catchtable: "https://www.catchtable.net/shop/geodaegomtang"
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -521,24 +568,50 @@
                     },
                     {
                         time: "11:30",
-                        title: "午餐 (無敵海景選品)",
-                        desc: "<b>候選 1：Guess WHO Restaurant</b> - 面海第一排落地窗，一邊看海一邊吃義大利麵/披薩。<br><b>候選 2：AllSunday (AllSunday gwangan)</b> - 廣安里海景熱門現烤貝果咖啡廳。",
+                        title: "午餐 (無敵海景選品 - 二選一)",
+                        desc: "廣安里海景第一排的悠閒饗宴，義式餐酒或現烤貝果咖啡廳：",
                         category: "food",
                         icon: "fa-cookie-bite",
                         tag: "午餐候選",
                         badge: "海景餐廳",
-                        img: "https://lh3.googleusercontent.com/gps-cs-s/ANWiy9TjrXafwEGsT-uAW4gUSLoBemqREymZrYTgSVWs3VEepgKmBSm6gUbRfF501NKuBg3qxcpk7LbzHdnQG6lBdZVIhSKxuDTjxIN7nZHBdHoFHe3r7oo9hXCXgv1OMD-XYcEG-VRgQ40GxYY=s1360-w1360-h1020-rw",
-                        imgLabel: "面海第一排落地窗景緻午餐",
-                        maps: [
+                        candidates: [
                             {
-                                name: "Guess WHO Restaurant",
-                                naver: "https://map.naver.com/p/search/%EA%B2%8C%EC%8A%A4%ED%9B%84",
-                                google: "https://www.google.com/maps/search/?api=1&query=Guess+Who+Restaurant+Busan"
+                                id: "c3-guesswho",
+                                name: "候選 1：Guess WHO Restaurant",
+                                badge: "無敵海景第一排",
+                                desc: "面海落地窗美景，悠閒品嚐義大利麵、手工薄脆披薩與牛排調酒。",
+                                img: "https://lh3.googleusercontent.com/gps-cs-s/ANWiy9TjrXafwEGsT-uAW4gUSLoBemqREymZrYTgSVWs3VEepgKmBSm6gUbRfF501NKuBg3qxcpk7LbzHdnQG6lBdZVIhSKxuDTjxIN7nZHBdHoFHe3r7oo9hXCXgv1OMD-XYcEG-VRgQ40GxYY=s1360-w1360-h1020-rw",
+                                imgLabel: "面海第一排落地窗景緻午餐",
+                                iWouldSay: {
+                                    review: "想要好好坐下來喝杯飲料看海發呆選這家！落地窗正對著廣安大橋與沙灘，拍照氛圍極佳，披薩跟義大利麵水準都在線！",
+                                    reels: "https://www.instagram.com/explore/tags/%EA%B2%8C%EC%8A%A4%ED%9B%84/"
+                                },
+                                maps: [
+                                    {
+                                        name: "Guess WHO",
+                                        naver: "https://map.naver.com/p/search/%EA%B2%8C%EC%8A%A4%ED%9B%84",
+                                        google: "https://www.google.com/maps/search/?api=1&query=Guess+Who+Restaurant+Busan"
+                                    }
+                                ]
                             },
                             {
-                                name: "AllSunday 廣安店",
-                                naver: "https://map.naver.com/p/search/%EC%98%AC%EC%84%A0%EB%8D%B0%EC%9D%B4%20%EA%B4%91%EC%95%88%EC%A0%90",
-                                google: "https://www.google.com/maps/search/?api=1&query=AllSunday+Bagel+Gwangalli"
+                                id: "c3-allsunday",
+                                name: "候選 2：AllSunday 廣安店",
+                                badge: "人氣貝果名店",
+                                desc: "廣安里超火紅現烤手工貝果咖啡廳，外皮微脆、口感 Q 彈紮實。",
+                                img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop&q=80",
+                                imgLabel: "AllSunday 熱門貝果咖啡",
+                                iWouldSay: {
+                                    review: "近期韓國非常紅的貝果店！剛出爐的貝果抹上厚厚一層自選乳酪抹醬簡直太幸福，再搭配一杯冰美式咖啡，是超chill的姐妹早午餐！",
+                                    reels: "https://www.instagram.com/explore/tags/%EC%98%AC%EC%84%A0%EB%8D%B0%EC%9D%B4/"
+                                },
+                                maps: [
+                                    {
+                                        name: "AllSunday 廣安店",
+                                        naver: "https://map.naver.com/p/search/%EC%98%AC%EC%84%A0%EB%8D%B0%EC%9D%B4%20%EA%B4%91%EC%95%88%EC%A0%90",
+                                        google: "https://www.google.com/maps/search/?api=1&query=AllSunday+Bagel+Gwangalli"
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -618,354 +691,44 @@
                     },
                     {
                         time: "13:00",
-                        title: "午餐/聚餐 (西面質感美食)",
-                        desc: "<b>候選 1：Cor Pasta Bar</b> - 田浦洞預約制精緻義大利麵 Bar。<br><b>候選 2：老宅邸燒肉 (Old Mansion)</b> - 復古古民家氛圍韓式燒肉。<br><b>候選 3：손내향米 (Sonnae Hyangmi)</b> - 高質感韓式釜飯專賣。",
+                        title: "午餐/聚餐 (西面質感美食 - 三選一)",
+                        desc: "田浦咖啡街必吃的三大設計師風格名店，點擊查看各家特色：",
                         category: "food",
                         icon: "fa-utensils",
                         tag: "午/晚餐候選",
-                        badge: "清單名店",
-                        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHoUBn1xZR79dk6UKSNlUhVyDLG-hRwBGnh9wFq1qaujwmOkd6w_MVOzeA&s=10",
-                        imgLabel: "田浦 Cor Pasta Bar 精緻手工義大利麵",
-                        maps: [
+                        badge: "質感清單",
+                        candidates: [
                             {
-                                name: "Cor Pasta Bar",
-                                naver: "https://map.naver.com/p/search/%EC%BD%94%EB%A5%B4%20%ED%8C%8C%EC%8A%A4%ED%83%80%EB%B0%94",
-                                google: "https://www.google.com/maps/search/?api=1&query=Cor+Pasta+Bar+Jeonpo+Busan",
-                                catchtable: "https://www.catchtable.net/zh-TW/shop/cor_pasta_bar"
+                                id: "c4-cor",
+                                name: "候選 1：Cor Pasta Bar",
+                                badge: "預約制義大利麵",
+                                desc: "田浦洞預約制精緻義大利麵 Bar，手工自製新鮮麵條與獨創醬汁。",
+                                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHoUBn1xZR79dk6UKSNlUhVyDLG-hRwBGnh9wFq1qaujwmOkd6w_MVOzeA&s=10",
+                                imgLabel: "Cor Pasta Bar 精緻手工麵",
+                                iWouldSay: {
+                                    review: "氣氛滿分！板前座位能近距離看到主廚現做生麵，松露或海鮮義大利麵風味極度濃郁細緻，需要提前透過 CatchTable 預約喔！",
+                                    reels: "https://www.instagram.com/explore/tags/%EC%BD%94%EB%A5%B4%ED%8C%8C%EC%8A%A4%ED%83%80%EB%B0%94/"
+                                },
+                                maps: [
+                                    {
+                                        name: "Cor Pasta Bar",
+                                        naver: "https://map.naver.com/p/search/%EC%BD%94%EB%A5%B4%20%ED%8C%8C%EC%8A%A4%ED%83%80%EB%B0%94",
+                                        google: "https://www.google.com/maps/search/?api=1&query=Cor+Pasta+Bar+Jeonpo+Busan",
+                                        catchtable: "https://www.catchtable.net/zh-TW/shop/cor_pasta_bar"
+                                    }
+                                ]
                             },
                             {
-                                name: "老宅邸燒肉",
-                                naver: "https://map.naver.com/p/search/%EA%B3%A0%ED%83%9D%20%EC%84%9C%EB%A9%B4",
-                                google: "https://www.google.com/maps/search/?api=1&query=Old+Mansion+BBQ+Busan"
-                            },
-                            {
-                                name: "손내향미 (Sonnae Hyangmi)",
-                                naver: "https://map.naver.com/p/search/%EC%86%90%EB%82%B4%ED%96%A5%EB%AF%B8",
-                                google: "https://www.google.com/maps/search/?api=1&query=Sonnae+Hyangmi+Busan",
-                                catchtable: "https://app.catchtable.co.kr/ct/shop/son.riceee"
-                            }
-                        ]
-                    },
-                    {
-                        time: "15:30",
-                        title: "田浦咖啡街甜點 & 韓系拍貼機大賽",
-                        desc: "西面是拍貼機超級戰區！挑選各式可愛頭飾與聯名框，和姐妹們多拍幾組紀念照。",
-                        category: "shop",
-                        icon: "fa-camera-retro",
-                        tag: "活動/甜點",
-                        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQvsqYhNnCLaS1pCzIMgx-pOe6Ym2AA7Xm_sPXe3CA7fLOFjUnDtRarJ0&s=10",
-                        imgLabel: "田浦咖啡街特色甜點與拿鐵",
-                        maps: [
-                            {
-                                name: "田浦咖啡街",
-                                naver: "https://map.naver.com/p/search/%EC%A0%84%ED%8F%AC%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC",
-                                google: "https://www.google.com/maps/search/?api=1&query=Jeonpo+Cafe+Street"
-                            }
-                        ]
-                    }
-                ]
-            },
-            5: {
-                title: "Day 5 ‧ 悠閒早午餐 ➔ 超市最後採購 ➔ 快樂賦歸",
-                date: "2026/12/11 (五)",
-                badge: "返台日 (19:50 航班)",
-                items: [
-                    {
-                        time: "11:00",
-                        title: "Wonaenu Mareu 退房 ➔ 質感早午餐與咖啡",
-                        desc: "睡到自然醒在 Wonaenu Mareu 欣賞最後的廣安大橋海景並辦理退房，隨後前往田浦挑選美感滿分的咖啡廳享受悠閒早午餐。",
-                        category: "food",
-                        icon: "fa-mug-hot",
-                        tag: "悠閒早午餐",
-                        img: "https://lizzzstyle.tw/wp-content/uploads/2025/10/InCollage_20251031_151751242.webp",
-                        imgLabel: "韓系溫馨陽光早午餐拼盤",
-                        maps: [
-                            {
-                                name: "田浦早午餐街區",
-                                naver: "https://map.naver.com/p/search/%EC%A0%84%ED%8F%AC%20%EB%B8%8C%EB%9F%B0%EC%B9%98%20%EC%B9%B4%ED%8E%98",
-                                google: "https://www.google.com/maps/search/?api=1&query=Jeonpo+Brunch+Cafe+Busan"
-                            }
-                        ]
-                    },
-                    {
-                        time: "14:00",
-                        title: "超市伴手禮最後衝刺",
-                        desc: "前往大型超市 (樂天超市 / E-mart) 進行泡麵、韓國零食、海苔與醬料大採購！",
-                        category: "shop",
-                        icon: "fa-cart-shopping",
-                        tag: "最後採買",
-                        img: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=800&auto=format&fit=crop&q=80",
-                        imgLabel: "大型超市伴手禮零食貨架衝刺",
-                        maps: [
-                            {
-                                name: "樂天超市 光復店",
-                                naver: "https://map.naver.com/p/search/%EB%A1%AF%EB%8D%B0%EB%A7%88%ED%8A%B8%20%EA%B4%91%EB%B3%B5%EC%A0%90",
-                                google: "https://www.google.com/maps/search/?api=1&query=Lotte+Mart+Gwangbok"
-                            },
-                            {
-                                name: "E-mart 門峴店 (近西面)",
-                                naver: "https://map.naver.com/p/search/%EC%9D%B4%EB%A7%88%ED%8A%B8%20%EB%AC%B8%ED%98%84%EC%A0%90",
-                                google: "https://www.google.com/maps/search/?api=1&query=E-mart+Munhyeon+Busan"
-                            }
-                        ]
-                    },
-                    {
-                        time: "17:00",
-                        title: "前往金海國際機場 (PUS)",
-                        desc: "搭車前往機場辦理退稅、登機手續。<br><b>回程航班：19:50 PUS ➔ 21:30 TPE</b>",
-                        category: "spot",
-                        icon: "fa-plane-departure",
-                        tag: "機場搭機",
-                        img: null,
-                        maps: [
-                            {
-                                name: "金海國際機場 (國際線)",
-                                naver: "https://map.naver.com/p/search/%EA%B9%80%ED%95%B4%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD%20%EA%B5%AD%EC%A0%9C%EC%84%A0",
-                                google: "https://www.google.com/maps/search/?api=1&query=Gimhae+International+Airport"
-                            }
-                        ]
-                    }
-                ]
-            }
-        };
-
-        // Bucket list items (打卡清單已同步加入富平罐頭市場小吃)
-        const bucketListItems = [
-            { id: "b1", text: "扎嘎其市場生魚片 / 烤魚" },
-            { id: "b2", text: "BIFF 廣場吃元祖堅果黑糖餅" },
-            { id: "b3", text: "富平罐頭市場吃李家辣炒年糕 & 魚板湯" },
-            { id: "b4", text: "海雲臺天空膠囊列車 (2026/12/8 16:00 預約)" },
-            { id: "b5", text: "甘川洞文化村與小王子合影" },
-            { id: "b6", text: "吃老虎冰淇淋大福 (Horang2 Gelatteok)" },
-            { id: "b7", text: "SPA LAND Centum City 羊角包汗蒸幕" },
-            { id: "b8", text: "Guess WHO 海景餐廳 / 廣安里 1988 韓牛" },
-            { id: "b9", text: "西面 Cor Pasta Bar / 老宅邸燒肉" },
-            { id: "b10", text: "李在模披薩 (Ijaemo Pizza) 起司饗宴" }
-        ];
-
-        let currentDay = 1;
-        let activeCategory = 'all';
-
-        // Render Page Function
-        function renderTimeline() {
-            const wrapper = document.getElementById('timeline-wrapper');
-            const dayData = itineraryData[currentDay];
-
-            let html = `
-                <div class="glass-card rounded-2xl p-5 mb-4 border-l-4 border-rose-400 flex items-center justify-between">
-                    <div>
-                        <span class="text-xs font-bold text-rose-500 bg-rose-50 px-2.5 py-1 rounded-md uppercase mb-1 inline-block">${dayData.date}</span>
-                        <h2 class="text-base sm:text-lg font-bold text-warmDark">${dayData.title}</h2>
-                    </div>
-                    <span class="hidden sm:inline-block bg-white text-gray-600 border border-gray-200 text-xs px-3 py-1.5 rounded-xl font-medium">${dayData.badge}</span>
-                </div>
-            `;
-
-            const filteredItems = dayData.items.filter(item => {
-                if (activeCategory === 'all') return true;
-                return item.category === activeCategory;
-            });
-
-            if (filteredItems.length === 0) {
-                html += `
-                    <div class="text-center py-12 bg-white/50 rounded-2xl border border-dashed border-rose-200">
-                        <i class="fa-solid fa-filter text-gray-300 text-3xl mb-2"></i>
-                        <p class="text-xs text-gray-400">該分類在此日期無相關行程安排</p>
-                    </div>
-                `;
-            } else {
-                filteredItems.forEach((item, index) => {
-                    const categoryColors = {
-                        food: "bg-rose-500 text-white",
-                        spot: "bg-ocean text-white",
-                        shop: "bg-purple-500 text-white"
-                    };
-                    const categoryBadgeClass = categoryColors[item.category] || "bg-gray-500 text-white";
-
-                    // 實用連結按鈕 (包含 Naver, Google 與 CatchTable)
-                    let mapsHtml = '';
-                    if (item.maps && item.maps.length > 0) {
-                        mapsHtml = `
-                            <div class="mt-4 pt-3 border-t border-rose-100/70 flex flex-wrap items-center gap-2">
-                                <span class="text-[11px] font-bold text-gray-400 flex items-center mr-1">
-                                    <i class="fa-solid fa-map-location-dot text-rose-400 mr-1.5 text-xs"></i>實用連結：
-                                </span>
-                                ${item.maps.map(m => `
-                                    <div class="inline-flex items-center bg-white/90 border border-rose-200/80 rounded-xl px-2.5 py-1 text-xs shadow-sm">
-                                        <span class="font-semibold text-warmDark mr-2 text-[11px]">${m.name}</span>
-                                        <div class="flex items-center gap-1.5 border-l border-gray-200 pl-2">
-                                            <a href="${m.naver}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-[#03C75A] hover:opacity-80 transition" title="在 Naver Map 查看店家實拍與路線">
-                                                <span class="bg-[#03C75A] text-white text-[9px] font-black px-1 rounded">N</span>
-                                                <span class="text-[11px]">Naver</span>
-                                            </a>
-                                            <span class="text-gray-300">|</span>
-                                            <a href="${m.google}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-blue-500 hover:opacity-80 transition" title="使用 Google Maps 開啟">
-                                                <i class="fa-brands fa-google text-xs text-blue-500"></i>
-                                                <span class="text-[11px]">Google</span>
-                                            </a>
-                                            ${m.catchtable ? `
-                                                <span class="text-gray-300">|</span>
-                                                <a href="${m.catchtable}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-[#FF385C] hover:opacity-80 transition" title="在 CatchTable 查看訂位/線上候位">
-                                                    <span class="bg-[#FF385C] text-white text-[9px] font-black px-1 rounded">C</span>
-                                                    <span class="text-[11px]">CatchTable</span>
-                                                </a>
-                                            ` : ''}
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        `;
-                    }
-
-                    // 實景縮圖區塊
-                    let imageHtml = '';
-                    if (item.images && item.images.length > 0) {
-                        imageHtml = `
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3.5 items-start">
-                                ${item.images.map((imgItem, idx) => `
-                                    <div class="relative w-full rounded-xl overflow-hidden group shadow-sm bg-rose-50/30 border border-rose-100">
-                                        <img src="${imgItem.url}"
-                                             alt="${imgItem.label || item.title}"
-                                             class="w-full h-auto object-contain block transition-transform duration-300 group-hover:scale-102"
-                                             loading="lazy"
-                                             onerror="this.onerror=null; this.src='${DEFAULT_FALLBACK_IMG}'">
-                                        <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm text-white text-[10px] px-2 py-0.5 rounded-lg flex items-center gap-1 shadow">
-                                            <i class="fa-solid fa-camera text-rose-300"></i>
-                                            <span>${imgItem.label || item.imgLabel || `${item.title} 照 ${idx + 1}`}</span>
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        `;
-                    } else if (item.img) {
-                        imageHtml = `
-                            <div class="relative w-full h-44 sm:h-56 rounded-xl overflow-hidden mb-3.5 group shadow-inner bg-rose-50/50">
-                                <img src="${item.img}"
-                                     alt="${item.title}"
-                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                     loading="lazy"
-                                     onerror="this.onerror=null; this.src='${DEFAULT_FALLBACK_IMG}'">
-                                <div class="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-sm text-white text-[10px] sm:text-xs px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow">
-                                    <i class="fa-solid fa-camera text-rose-300"></i>
-                                    <span>${item.imgLabel || item.title}</span>
-                                </div>
-                            </div>
-                        `;
-                    }
-
-                    html += `
-                        <div class="glass-card rounded-2xl p-5 custom-shadow transition duration-300 hover:translate-y-[-2px] relative overflow-hidden">
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-                                <div class="flex items-center gap-3">
-                                    <div class="${categoryBadgeClass} w-9 h-9 rounded-xl flex items-center justify-center text-sm shadow-sm flex-shrink-0">
-                                        <i class="fa-solid ${item.icon}"></i>
-                                    </div>
-                                    <div>
-                                        <span class="text-xs font-extrabold text-rose-400 tracking-wider">${item.time}</span>
-                                        <h3 class="text-base font-bold text-warmDark">${item.title}</h3>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-2 self-start sm:self-auto">
-                                    ${item.badge ? `<span class="bg-amber-100 text-amber-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full">${item.badge}</span>` : ''}
-                                    <span class="bg-gray-100 text-gray-600 text-[11px] font-medium px-2 py-0.5 rounded-md">${item.tag}</span>
-                                </div>
-                            </div>
-
-                            ${imageHtml}
-
-                            <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                                ${item.desc}
-                            </p>
-
-                            ${mapsHtml}
-                        </div>
-                    `;
-                });
-            }
-            wrapper.innerHTML = html;
-        }
-
-        // Switch Day Tabs
-        function switchDay(day) {
-            currentDay = day;
-            document.querySelectorAll('.day-tab').forEach((tab, i) => {
-                if (i + 1 === day) {
-                    tab.classList.remove('opacity-70', 'bg-white');
-                    tab.classList.add('bg-warmDark', 'text-white', 'shadow-md');
-                    tab.querySelector('.text-rose-400').classList.replace('text-rose-400', 'text-rose-100');
-                    tab.querySelector('.text-warmDark').classList.replace('text-warmDark', 'text-white');
-                    tab.querySelector('.text-gray-400').classList.replace('text-gray-400', 'text-rose-100');
-                } else {
-                    tab.classList.add('opacity-70', 'bg-white');
-                    tab.classList.remove('bg-warmDark', 'text-white', 'shadow-md');
-                    const r = tab.querySelector('.text-rose-100');
-                    if (r) r.classList.replace('text-rose-100', 'text-rose-400');
-                    const w = tab.querySelector('.text-white');
-                    if (w) w.classList.replace('text-white', 'text-warmDark');
-                    const g = tab.querySelector('.text-rose-100');
-                    if (g) g.classList.replace('text-rose-100', 'text-gray-400');
-                }
-            });
-            renderTimeline();
-        }
-
-        // Category Filter
-        function filterCategory(cat) {
-            activeCategory = cat;
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('bg-warmDark', 'text-white');
-                btn.classList.add('bg-white', 'text-gray-600');
-            });
-            const activeBtn = document.getElementById(`btn-${cat}`);
-            if(activeBtn) {
-                activeBtn.classList.add('bg-warmDark', 'text-white');
-                activeBtn.classList.remove('bg-white', 'text-gray-600');
-            }
-            renderTimeline();
-        }
-
-        // Bucket List Panel Toggle
-        function toggleBucketList() {
-            const panel = document.getElementById('bucket-panel');
-            panel.classList.toggle('hidden');
-        }
-
-        // Render Checklist
-        function renderChecklist() {
-            const container = document.getElementById('checklist-container');
-            let html = '';
-            bucketListItems.forEach(item => {
-                html += `
-                    <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/70 hover:bg-white border border-gray-100 cursor-pointer transition">
-                        <input type="checkbox" id="${item.id}" onchange="updateBucketCount()" class="w-4 h-4 rounded text-rose-500 focus:ring-rose-400 border-gray-300">
-                        <span id="label-${item.id}" class="text-xs sm:text-sm font-medium text-gray-700">${item.text}</span>
-                    </label>
-                `;
-            });
-            container.innerHTML = html;
-        }
-
-        // Update Checklist Count
-        function updateBucketCount() {
-            let count = 0;
-            bucketListItems.forEach(item => {
-                const cb = document.getElementById(item.id);
-                const label = document.getElementById(`label-${item.id}`);
-                if (cb && cb.checked) {
-                    count++;
-                    label.classList.add('checked-item');
-                } else if (label) {
-                    label.classList.remove('checked-item');
-                }
-            });
-            document.getElementById('bucket-count').innerText = `${count}/${bucketListItems.length}`;
-        }
-
-        // Init
-        window.onload = function() {
-            renderChecklist();
-            switchDay(1);
-        };
-    </script>
-</body>
-</html>
+                                id: "c4-oldmansion",
+                                name: "候選 2：老宅邸燒肉 (Old Mansion)",
+                                badge: "古民家氛圍",
+                                desc: "復古老韓屋古宅院落氛圍，炭火燒肉搭配豐富小菜烤盤。",
+                                img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80",
+                                imgLabel: "古宅炭火燒肉氛圍",
+                                iWouldSay: {
+                                    review: "超有年代故事感的老宅裝潢，拍照超級出片！在古色古香的庭院木屋裡吃熱騰騰的炭火燒肉，別有一番文藝浪漫情調！",
+                                    reels: "https://www.instagram.com/explore/tags/%EA%B3%A0%ED%83%9D%EC%84%9C%EB%A9%B4/"
+                                },
+                                maps: [
+                                    {
+           
