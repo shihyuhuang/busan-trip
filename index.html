@@ -908,7 +908,7 @@
                     };
                     const categoryBadgeClass = categoryColors[item.category] || "bg-gray-500 text-white";
 
-                    // 候選卡片渲染 (圖片下方直接配文字敘述與 I would say 按鈕)
+                    // 候選卡片渲染 (圖片下方直接配文字敘述、I would say 按鈕與完全比照景點樣式之導航連結)
                     let candidatesHtml = '';
                     if (item.candidates && item.candidates.length > 0) {
                         const gridColClass = item.candidates.length === 2 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3';
@@ -960,17 +960,33 @@
                                             </div>
                                         </div>
 
+                                        <!-- 🌟 餐廳導航按鈕：完全比照景點樣式、大小、位置，並加上「實用連結：」 -->
                                         ${cand.maps && cand.maps.length > 0 ? `
-                                            <div class="p-3 pt-0 border-t border-rose-50 flex items-center justify-end gap-1.5 flex-wrap">
+                                            <div class="mt-auto p-3.5 pt-3 border-t border-rose-100/70 flex flex-wrap items-center gap-2">
+                                                <span class="text-[11px] font-bold text-gray-400 flex items-center mr-1">
+                                                    <i class="fa-solid fa-map-location-dot text-rose-400 mr-1.5 text-xs"></i>實用連結：
+                                                </span>
                                                 ${cand.maps.map(m => `
-                                                    <div class="inline-flex items-center bg-gray-50 border border-rose-100 rounded-lg px-2 py-0.5 text-[10px]">
-                                                        <a href="${m.naver}" target="_blank" rel="noopener noreferrer" class="font-bold text-[#03C75A] hover:opacity-80 transition mr-1.5">Naver</a>
-                                                        <span class="text-gray-300 mr-1.5">|</span>
-                                                        <a href="${m.google}" target="_blank" rel="noopener noreferrer" class="font-bold text-blue-500 hover:opacity-80 transition">Google</a>
-                                                        ${m.catchtable ? `
-                                                            <span class="text-gray-300 mx-1.5">|</span>
-                                                            <a href="${m.catchtable}" target="_blank" rel="noopener noreferrer" class="font-bold text-[#FF385C] hover:opacity-80 transition">CatchTable</a>
-                                                        ` : ''}
+                                                    <div class="inline-flex items-center bg-white/90 border border-rose-200/80 rounded-xl px-2.5 py-1 text-xs shadow-sm">
+                                                        <span class="font-semibold text-warmDark mr-2 text-[11px]">${m.name}</span>
+                                                        <div class="flex items-center gap-1.5 border-l border-gray-200 pl-2">
+                                                            <a href="${m.naver}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-[#03C75A] hover:opacity-80 transition" title="在 Naver Map 查看店家實拍與路線">
+                                                                <span class="bg-[#03C75A] text-white text-[9px] font-black px-1 rounded">N</span>
+                                                                <span class="text-[11px]">Naver</span>
+                                                            </a>
+                                                            <span class="text-gray-300">|</span>
+                                                            <a href="${m.google}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-blue-500 hover:opacity-80 transition" title="使用 Google Maps 開啟">
+                                                                <i class="fa-brands fa-google text-xs text-blue-500"></i>
+                                                                <span class="text-[11px]">Google</span>
+                                                            </a>
+                                                            ${m.catchtable ? `
+                                                                <span class="text-gray-300">|</span>
+                                                                <a href="${m.catchtable}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-[#FF385C] hover:opacity-80 transition" title="在 CatchTable 查看訂位/線上候位">
+                                                                    <span class="bg-[#FF385C] text-white text-[9px] font-black px-1 rounded">C</span>
+                                                                    <span class="text-[11px]">CatchTable</span>
+                                                                </a>
+                                                            ` : ''}
+                                                        </div>
                                                     </div>
                                                 `).join('')}
                                             </div>
