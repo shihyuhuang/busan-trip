@@ -128,7 +128,7 @@
                 </p>
             </div>
 
-            <!-- 🌟 精緻小巧雙地圖按鈕 (無重複店名、Naver 綠底樣式) -->
+            <!-- 🌟 精緻小巧雙地圖按鈕 -->
             <div class="flex items-center justify-center sm:justify-end gap-2 flex-shrink-0">
                 <a href="https://naver.me/FvTO34vd" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-[#03C75A] text-white text-[11px] font-bold px-2.5 py-1 rounded-xl hover:opacity-90 transition shadow-xs" title="使用 Naver 地圖開啟">
                     <span class="bg-white text-[#03C75A] text-[9px] font-black px-1 rounded">N</span>
@@ -143,7 +143,6 @@
 
         <!-- Quick Stats & Filter Bar -->
         <div class="glass-card rounded-2xl p-4 mb-6 custom-shadow flex flex-wrap items-center justify-between gap-3">
-            <!-- Filter buttons -->
             <div class="flex items-center gap-1 sm:gap-2 overflow-x-auto hide-scrollbar w-full sm:w-auto">
                 <button onclick="filterCategory('all')" id="btn-all" class="category-btn active bg-warmDark text-white px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition">
                     全部行程
@@ -159,7 +158,6 @@
                 </button>
             </div>
 
-            <!-- Action Buttons -->
             <div class="flex items-center gap-2 ml-auto">
                 <button onclick="window.print()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-1">
                     <i class="fa-solid fa-print"></i>
@@ -168,7 +166,7 @@
                 <button onclick="toggleBucketList()" class="bg-rose-500 hover:bg-rose-600 text-white px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition shadow-sm flex items-center gap-1.5">
                     <i class="fa-solid fa-square-check"></i>
                     <span>打卡清單</span>
-                    <span id="bucket-count" class="bg-white/30 text-white text-xs px-1.5 py-0.5 rounded-full font-mono">0/9</span>
+                    <span id="bucket-count" class="bg-white/30 text-white text-xs px-1.5 py-0.5 rounded-full font-mono">0/10</span>
                 </button>
             </div>
         </div>
@@ -189,7 +187,7 @@
             <button onclick="switchDay(1)" id="tab-day1" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-white shadow-sm border border-rose-100 transition duration-200">
                 <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">DAY 1</div>
                 <div class="text-xs sm:text-sm font-bold text-warmDark">2026/12/07 (一)</div>
-                <div class="text-[11px] text-gray-400 mt-0.5">南浦洞 &amp; 夜景</div>
+                <div class="text-[11px] text-gray-400 mt-0.5">南浦洞 &amp; 罐頭夜市</div>
             </button>
             <button onclick="switchDay(2)" id="tab-day2" class="day-tab flex-1 min-w-[100px] text-center p-3 rounded-2xl bg-white shadow-sm border border-rose-100 transition duration-200 opacity-70">
                 <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wider">DAY 2</div>
@@ -225,20 +223,20 @@
     </footer>
 
     <script>
-        // 預設 Fallback 圖片 (若網路不穩自動使用)
+        // 預設 Fallback 圖片
         const DEFAULT_FALLBACK_IMG = "https://bobbytravel.tw/wp-content/uploads/2026/06/20260810225703_0_33c1cb.webp";
 
-        // 行程資料 (已全面升級加入 CatchTable 訂位/候位連結)
+        // 行程資料 (Day 1 已將 光復路時尚街、BIFF 廣場、富平罐頭小吃 細化分流)
         const itineraryData = {
             1: {
-                title: "Day 1 ‧ 抵達釜山 ➔ 南浦洞經典漫步 ➔ 韓味午餐 & 樂天夜景",
+                title: "Day 1 ‧ 抵達釜山 ➔ 南浦洞時尚街 ➔ BIFF 堅果糖餅 ➔ 富平小吃 & 樂天夜景",
                 date: "2026/12/07 (一)",
-                badge: "南浦洞 / 扎嘎其區域",
+                badge: "南浦洞 / 扎嘎其 / 富平市場",
                 items: [
                     {
                         time: "10:50",
                         title: "抵達金海機場 (PUS) ➔ 前往廣安里飯店",
-                        desc: "辦理入境、領取行李，搭乘 Kakao T 計程車或地鐵前往水營區廣安里飯店 <b>Wonaenu Mareu</b> 寄放行李。",
+                        desc: "辦理入境、領取行李，搭乘 Kakao T 計程車直達水營區廣安里海景飯店 <b>Wonaenu Mareu</b> 寄放行李，換上輕裝準備出發！",
                         category: "spot",
                         icon: "fa-plane-arrival",
                         tag: "交通",
@@ -293,19 +291,20 @@
                         ]
                     },
                     {
-                        time: "15:00 - 18:00",
-                        title: "南浦洞 & BIFF 廣場漫步 + 韓系拍貼機",
-                        desc: "掃蕩 BIFF 廣場現煎堅果黑糖餅 (Seed Hotteok)、辣炒年糕。與姐妹們在 Photoism / Life Four Cuts 拍攝第一組四格拍貼照！",
+                        time: "15:00",
+                        title: "光復路文化時尚街 (Gwangbok-ro Fashion Street)",
+                        desc: "被譽為「釜山明洞」的人氣逛街勝地！林立各大人氣韓流服飾、Olive Young 美妝店、Shoopen 平價鞋店。12 月適逢聖誕樹燈光節，街道裝置華麗燦爛，沿路還有 Photoism、Haru Film 等熱門拍貼機！",
                         category: "shop",
-                        icon: "fa-camera",
-                        tag: "打卡/活動",
-                        img: "https://lizzzstyle.tw/wp-content/uploads/2025/08/InCollage_20250826_160959439.webp",
-                        imgLabel: "BIFF廣場知名元祖堅果黑糖餅 (씨앗호떡)",
+                        icon: "fa-bag-shopping",
+                        tag: "時尚/購物",
+                        badge: "釜山明洞",
+                        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxRfSTsNHx8lZN_M2qk_FCv3I-dgKXdqcWdnPiJu474J3Y_pO-v0sTtp4&s=10",
+                        imgLabel: "光復路文化時尚街熱鬧商圈實景",
                         maps: [
                             {
-                                name: "BIFF 廣場",
-                                naver: "https://map.naver.com/p/search/BIFF%EA%B4%91%EC%9E%A5",
-                                google: "https://www.google.com/maps/search/?api=1&query=BIFF+Square+Busan"
+                                name: "光復路文化時尚街",
+                                naver: "https://map.naver.com/p/search/%EA%B4%91%EB%B3%B5%EB%A1%9C%20%ED%8C%A8%EC%85%98%EA%B1%B0%EB%A6%AC",
+                                google: "https://www.google.com/maps/search/?api=1&query=Gwangbok-ro+Fashion+Street+Busan"
                             },
                             {
                                 name: "Photoism 南浦店",
@@ -315,7 +314,25 @@
                         ]
                     },
                     {
-                        time: "16:30",
+                        time: "16:00",
+                        title: "BIFF 廣場 (BIFF Square)",
+                        desc: "釜山國際電影節發源地！地面留有世界知名電影導演與明星的手印。必吃排隊名物「元祖現煎堅果黑糖餅 (씨앗호떡)」，外皮金黃香脆、內餡塞滿香濃堅果與黑糖蜜，邊走邊吃超幸福！",
+                        category: "spot",
+                        icon: "fa-film",
+                        tag: "名物打卡",
+                        badge: "必吃黑糖餅",
+                        img: "https://lizzzstyle.tw/wp-content/uploads/2025/08/InCollage_20250826_160959439.webp",
+                        imgLabel: "BIFF 廣場排隊元祖堅果黑糖餅 (씨앗호떡)",
+                        maps: [
+                            {
+                                name: "BIFF 廣場",
+                                naver: "https://map.naver.com/p/search/BIFF%EA%B4%91%EC%9E%A5",
+                                google: "https://www.google.com/maps/search/?api=1&query=BIFF+Square+Busan"
+                            }
+                        ]
+                    },
+                    {
+                        time: "16:45",
                         title: "下午茶：李在模披薩 本店 (Ijaemo Pizza)",
                         desc: "釜山爆款起司披薩！使用韓國國產濃醇起司，建議可利用 CatchTable 關注候位情況，外帶小份披薩作為下午茶分享。",
                         category: "food",
@@ -334,9 +351,32 @@
                         ]
                     },
                     {
-                        time: "18:30",
+                        time: "17:45",
+                        title: "富平罐頭市場小吃 (Bupyeong Kkangtong Market)",
+                        desc: "穿過國際市場抵達歷史悠久的富平罐頭夜市！推薦鎖定白種元推薦的<b>「李家三代天王辣炒年糕 (이가네떡볶이)」</b>（不加水炒出蘿蔔香甜精華）、現煮<b>熱騰騰魚板湯</b>、<b>油豆腐包 (유부전골)</b> 與道地<b>辣拌粉條 (비빔당면)</b>。",
+                        category: "food",
+                        icon: "fa-bowl-rice",
+                        tag: "夜市小吃",
+                        badge: "白種元推薦",
+                        img: "https://damei17.com/wp-content/uploads/2023/02/%E8%80%81%E8%99%8E%E5%86%B0%E6%B7%87%E6%B7%8B%E5%A4%A7%E7%A6%8F-%E1%84%92%E1%85%A9%E1%84%85%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%A6%E1%86%AF%E1%84%85%E1%85%A1%E1%84%84%E1%85%A5%E1%86%A8-21.jpeg",
+                        imgLabel: "富平罐頭市場道地香濃小吃與辣炒年糕",
+                        maps: [
+                            {
+                                name: "富平罐頭市場",
+                                naver: "https://map.naver.com/p/search/%EB%B6%80%ED%8F%89%EA%B9%A1%ED%86%B5%EC%8B%9C%EC%9E%A5",
+                                google: "https://www.google.com/maps/search/?api=1&query=Bupyeong+Kkangtong+Market+Busan"
+                            },
+                            {
+                                name: "李家辣炒年糕 (이가네)",
+                                naver: "https://map.naver.com/p/search/%EC%9D%B4%EA%B0%80%EB%84%A4%EB%96%A1%EB%B3%B6%EC%9D%B4",
+                                google: "https://www.google.com/maps/search/?api=1&query=Igane+Tteokbokki+Bupyeong"
+                            }
+                        ]
+                    },
+                    {
+                        time: "19:15",
                         title: "樂天百貨光復店夜景 ➔ 樂天超市採買",
-                        desc: "登上 13 樓免費 Sky Park 俯瞰釜山港夜景與影島大橋，隨後至 B1 樂天超市採買零食伴手禮。",
+                        desc: "登上 13 樓免費 Sky Park 俯瞰璀璨釜山港夜景與影島大橋，隨後至 B1 樂天超市採買零食伴手禮。",
                         category: "spot",
                         icon: "fa-city",
                         tag: "景點/購物",
@@ -579,7 +619,7 @@
                     {
                         time: "13:00",
                         title: "午餐/聚餐 (西面質感美食)",
-                        desc: "<b>候選 1：Cor Pasta Bar</b> - 田浦洞預約制精緻義大利麵 Bar。<br><b>候選 2：老宅邸燒肉 (Old Mansion)</b> - 復古古民家氛圍韓式燒肉。<br><b>候選 3：손내향미 (Sonnae Hyangmi)</b> - 高質感韓式釜飯專賣。",
+                        desc: "<b>候選 1：Cor Pasta Bar</b> - 田浦洞預約制精緻義大利麵 Bar。<br><b>候選 2：老宅邸燒肉 (Old Mansion)</b> - 復古古民家氛圍韓式燒肉。<br><b>候選 3：손내향米 (Sonnae Hyangmi)</b> - 高質感韓式釜飯專賣。",
                         category: "food",
                         icon: "fa-utensils",
                         tag: "午/晚餐候選",
@@ -689,17 +729,18 @@
             }
         };
 
-        // Bucket list items
+        // Bucket list items (打卡清單已同步加入富平罐頭市場小吃)
         const bucketListItems = [
-            { id: "b1", text: "扎嘎其市場 / BIFF 廣場吃黑糖餅" },
-            { id: "b2", text: "海雲臺天空膠囊列車 (2026/12/8 16:00 預約)" },
-            { id: "b3", text: "甘川洞文化村與小王子合影" },
-            { id: "b4", text: "吃老虎冰淇淋大福 (Horang2 Gelatteok)" },
-            { id: "b5", text: "SPA LAND Centum City 羊角包汗蒸幕" },
-            { id: "b6", text: "Guess WHO 海景餐廳 / 廣安里 1988 韓牛" },
-            { id: "b7", text: "西面 Cor Pasta Bar / 老宅邸燒肉" },
-            { id: "b8", text: "李在模披薩 (Ijaemo Pizza) 起司饗宴" },
-            { id: "b9", text: "西面 & 南浦洞韓系無人拍貼機" }
+            { id: "b1", text: "扎嘎其市場生魚片 / 烤魚" },
+            { id: "b2", text: "BIFF 廣場吃元祖堅果黑糖餅" },
+            { id: "b3", text: "富平罐頭市場吃李家辣炒年糕 & 魚板湯" },
+            { id: "b4", text: "海雲臺天空膠囊列車 (2026/12/8 16:00 預約)" },
+            { id: "b5", text: "甘川洞文化村與小王子合影" },
+            { id: "b6", text: "吃老虎冰淇淋大福 (Horang2 Gelatteok)" },
+            { id: "b7", text: "SPA LAND Centum City 羊角包汗蒸幕" },
+            { id: "b8", text: "Guess WHO 海景餐廳 / 廣安里 1988 韓牛" },
+            { id: "b9", text: "西面 Cor Pasta Bar / 老宅邸燒肉" },
+            { id: "b10", text: "李在模披薩 (Ijaemo Pizza) 起司饗宴" }
         ];
 
         let currentDay = 1;
@@ -741,7 +782,7 @@
                     };
                     const categoryBadgeClass = categoryColors[item.category] || "bg-gray-500 text-white";
 
-                    // 🌟 導航與 CatchTable 連結按鈕 (支援 Naver、Google 與 CatchTable)
+                    // 實用連結按鈕 (包含 Naver, Google 與 CatchTable)
                     let mapsHtml = '';
                     if (item.maps && item.maps.length > 0) {
                         mapsHtml = `
@@ -776,7 +817,7 @@
                         `;
                     }
 
-                    // 實景縮圖區塊 (同時支援 images 多圖雙欄排版與單圖 img)
+                    // 實景縮圖區塊
                     let imageHtml = '';
                     if (item.images && item.images.length > 0) {
                         imageHtml = `
